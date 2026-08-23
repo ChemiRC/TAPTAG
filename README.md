@@ -1,0 +1,164 @@
+# TAPTAG — Landing
+
+Landing de TAPTAG: stickers y displays NFC premium para restaurantes en
+Guadalajara y Zapopan. Reemplazan el QR impreso de la mesa — el comensal acerca
+el celular y cae en el menú digital o en el perfil de Google Reviews.
+
+El sitio replica el pitch de venta presencial: hay una demo interactiva donde el
+visitante primero usa un QR simulado (y siente los siete segundos y medio de
+fricción) y luego el tap (que resuelve en menos de medio segundo).
+
+## ⚠️ Qué actualizar antes de publicar
+
+| Qué | Dónde | Estado |
+|---|---|---|
+| **Número de WhatsApp** | `NEXT_PUBLIC_WHATSAPP_NUMBER` | `52XXXXXXXXXX`. Los 8 CTA arman bien la URL pero apuntan a un número inexistente. **Bloqueante.** |
+| **Precios** | `lib/content.ts` → `PLANS` | `$XXX` en Prueba y Restaurante. **Bloqueante.** |
+| **Datos legales** | `app/aviso-de-privacidad/page.tsx` | Razón social, domicilio fiscal y fecha están como `[...]`. El texto es un **borrador base, no asesoría legal**. **Bloqueante.** |
+| **Testimonios** | `lib/content.ts` → `TESTIMONIALS` | De relleno. La sección **no se renderiza** mientras lo sean (ver abajo). |
+| **Dominio** | `NEXT_PUBLIC_SITE_URL` | Por defecto `https://taptag.mx`, que es una suposición. |
+| **Correo** | `lib/constants.ts` → `SITE.email` | `null`. Sin él, el footer omite la línea y el aviso de privacidad manda los derechos ARCO por WhatsApp. |
+
+### La guarda de testimonios
+
+`hasPublishableTestimonials()` en `lib/content.ts` comprueba el **contenido**, no
+un flag manual. Mientras alguna cita diga `PLACEHOLDER` o el nombre sea
+`Nombre Apellido`:
+
+- en producción la sección entera desaparece del DOM;
+- en desarrollo queda un aviso en su lugar recordando reemplazarla.
+
+En cuanto se escriban citas reales, la sección se enciende sola. Es preferible no
+tener testimonios a publicar testimonios falsos.
+
+## Stack
+
+Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · motion · GSAP
+(ScrollTrigger + SplitText) · Lenis · deploy en Vercel.
+
+## Comandos
+
+```bash
+npm run dev     # desarrollo en http://localhost:3000
+npm run build   # build de producción
+npm start       # sirve el build de producción
+npm run lint    # ESLint
+npx tsc --noEmit  # typecheck
+```
+
+## Estructura
+
+| Ruta | Qué vive ahí |
+| --- | --- |
+| `app/globals.css` | Design system completo: paleta, tipografías, radios, sombras, keyframes y el bloque de `prefers-reduced-motion`. |
+| `app/layout.tsx` | Metadata, fuentes, chrome persistente y JSON-LD. |
+| `app/opengraph-image.tsx` · `icon.tsx` · `apple-icon.tsx` | Imágenes generadas en build con `ImageResponse`. Sin assets externos. |
+| `app/sitemap.ts` · `app/robots.ts` | Rutas reales, derivadas de `SITE.url`. |
+| `components/sections/` | Las ocho secciones: `Problem`, `Demo`, `HowItWorks`, `Features`, `Pricing`, `Testimonials`, `Faq`, `FinalCta`. |
+| `components/hero/` | Hero: timeline GSAP + SplitText, `NfcTapVisual`, fondo y scroll indicator. |
+| `components/demo/` | Demo interactiva y las piezas compartidas `PhoneFrame` / `DestinationScreen`. |
+| `components/problem/` · `how-it-works/` · `features/` · `pricing/` · `faq/` | Piezas de cada sección. |
+| `components/layout/` | Chrome persistente: `Navbar`, `MobileMenu`, `Footer`, `WhatsAppFAB`, `Logo`. |
+| `components/ui/` | Primitivos: `Button`, `Section`, `Reveal`, `CountUp`, `NfcRipple`, `MeshGradient`, `GridBackground`, `NoiseOverlay`. |
+| `components/seo/` | `StructuredData`: JSON-LD de `LocalBusiness` y `FAQPage`. |
+| `lib/constants.ts` | `WHATSAPP_NUMBER`, `buildWhatsAppUrl`, `SITE`, `WHATSAPP_MESSAGES`, `NAV_LINKS`. |
+| `lib/content.ts` | `PLANS`, `TESTIMONIALS`, `FAQS` y la guarda de testimonios. |
+| `lib/hooks/` | `usePrefersReducedMotion`, `useIsTouchDevice`, `useScrollLock`, `useFocusTrap`. |
+| `assets/fonts/` | TTF de Clash Display, solo para generar la imagen OG en build. No se sirve. |
+| `public/fonts/` | Clash Display en woff2, servido por `next/font/local`. |
+
+## Convenciones
+
+- Animar **solo** `transform` y `opacity`. Las dos excepciones deliberadas son el
+  `stroke-dashoffset` de la línea de "Cómo funciona" y el `grid-template-rows`
+  del acordeón de FAQ; ambas están comentadas donde ocurren.
+- Mobile-first: se diseña desde 375px porque el pitch se hace mostrando un celular.
+- Cada animación respeta `prefers-reduced-motion`, vía `gsap.matchMedia()` cuando
+  es JS. **Siempre con la condición complementaria `no-preference`**: `mm.add`
+  solo ejecuta el callback si alguna condición hace match.
+- El estado inicial de toda animación va en el **marcado** (estilos inline), no
+  puesto por JS al hidratar. Si lo pusiera JS, el HTML del servidor se pintaría
+  completo y luego se apagaría de golpe.
+- Las preferencias del navegador (reduced motion, touch) **no** pueden cambiar el
+  marcado del primer render: React 19 no reconcilia atributos al hidratar. Los
+  hooks arrancan en `false` y se corrigen en un layout effect.
+- Cada CTA de WhatsApp lleva un mensaje distinto según su origen, para saber de
+  dónde vino cada prospecto.
+
+## Verificación
+
+No hay suite de tests en el repo: la verificación se hizo manejando el sitio con
+Playwright sobre Chrome real, fase por fase. Para reproducirla:
+
+```bash
+npm run build && npm start          # levanta producción en :3000
+# en otra carpeta, fuera del repo:
+npm init -y && npm install playwright
+# y se corren los scripts de verificación contra http://localhost:3000
+```
+
+Lo que se comprobó en el cierre: Lighthouse móvil, recorrido completo por
+teclado, recorrido con `prefers-reduced-motion`, el sitio sin JavaScript, el
+"sostener" del QR con eventos touch reales, los tres viewports de pitch
+(375×667, 390×844, 412×915) y ausencia de overflow horizontal de 320 a 1920px.
+
+## Variables de entorno
+
+| Variable | Para qué | Si falta |
+|---|---|---|
+| `NEXT_PUBLIC_SITE_URL` | `metadataBase`, imagen Open Graph, `sitemap.xml`, `robots.txt` y JSON-LD. Con protocolo y sin barra final. | Se usa `https://taptag.mx` (suposición). |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Los 8 CTA de WhatsApp y el `telephone` del JSON-LD. Código de país + número, sin `+` ni espacios. | Todos los CTA apuntan a `52XXXXXXXXXX`, que no es marcable. |
+
+`.env.example` documenta las dos; cópialo a `.env.local` para desarrollo (ese
+archivo no se sube).
+
+> **Las `NEXT_PUBLIC_*` se incrustan en el bundle en tiempo de build.** Definirlas
+> en Vercel no basta: hay que volver a desplegar para que surtan efecto.
+
+El build funciona con las variables presentes y ausentes; sin ellas el sitio
+compila igual y los placeholders quedan a la vista, que es justo lo que se busca.
+
+## Subir a GitHub
+
+El repo ya está inicializado en `main` con un commit inicial. Para publicarlo:
+
+```bash
+# Opción A — con GitHub CLI (crea el repo y hace el push de una vez)
+gh repo create taptag-landing --private --source=. --remote=origin --push
+
+# Opción B — a mano: crea el repo vacío en github.com/new (sin README ni
+# .gitignore, para que no haya conflictos) y luego:
+git remote add origin https://github.com/TU-USUARIO/taptag-landing.git
+git push -u origin main
+```
+
+## Deploy en Vercel
+
+1. [vercel.com/new](https://vercel.com/new) → **Import Git Repository** → elige el repo.
+2. El framework se detecta solo (**Next.js**). No toques build command, output
+   directory ni install command.
+3. Antes de darle a Deploy, despliega **Environment Variables** y añade:
+
+   | Name | Value |
+   |---|---|
+   | `NEXT_PUBLIC_SITE_URL` | `https://tu-dominio.com` |
+   | `NEXT_PUBLIC_WHATSAPP_NUMBER` | `52` + tus 10 dígitos |
+
+   Déjalas marcadas para Production, Preview y Development.
+4. **Deploy**.
+
+Cada push a `main` dispara un despliegue de producción; cada PR genera una URL de
+preview.
+
+### Conectar un dominio propio
+
+1. Vercel → proyecto → **Settings → Domains → Add**, escribe el dominio.
+2. En tu registrador, apunta los DNS como indique Vercel:
+   - dominio raíz → registro `A` a la IP que muestre Vercel;
+   - `www` → registro `CNAME` a `cname.vercel-dns.com`.
+3. El certificado HTTPS lo emite Vercel solo en cuanto propaguen los DNS.
+4. Actualiza `NEXT_PUBLIC_SITE_URL` al dominio final y **vuelve a desplegar**
+   (Deployments → ⋯ → Redeploy), o el sitemap y la imagen OG seguirán apuntando
+   al valor anterior.
+
+No hacen falta más variables: el sitio es estático, sin API ni base de datos.

@@ -1,0 +1,9 @@
+# Normaliza los finales de línea: se trabaja en Windows pero Vercel compila en
+# Linux, y sin esto el repo mezcla CRLF y LF.
+* text=auto eol=lf
+
+# Binarios: que Git no intente convertirlos ni mostrarlos como diff.
+*.woff2 binary
+*.ttf   binary
+*.png   binary
+*.ico   binary

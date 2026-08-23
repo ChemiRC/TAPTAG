@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   TAPTAG · Design System
+   Dark mode premium (OLED). Todo el sistema vive aquí y se consume vía
+   utilidades de Tailwind (bg-bg, text-muted, rounded-card, shadow-glow…).
+   ========================================================================= */
+
+@theme {
+  /* ---- Paleta ---------------------------------------------------------- */
+  --color-bg: #0a0a0b;
+  --color-surface: #111114;
+  --color-surface-2: #17171b;
+  --color-border: #1f1f23;
+  --color-text: #ededed;
+  --color-muted: #8a8a8a;
+  /* Texto terciario. Es el gris mas oscuro que sigue pasando WCAG AA sobre el
+     fondo (4.74:1). Debajo de esto solo va decoracion aria-hidden. */
+  --color-dim: #7c7c7c;
+  --color-accent: #22d3ee;
+  --color-accent-2: #7c3aed;
+
+  /* ---- Tipografía ------------------------------------------------------ */
+  --font-display: var(--font-clash-display), "Clash Display", ui-sans-serif,
+    system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+
+  /* ---- Radios ---------------------------------------------------------- */
+  --radius-pill: 9999px;
+  --radius-card: 1.25rem;
+  --radius-panel: 1.75rem;
+
+  /* ---- Sombras + glow del acento --------------------------------------- */
+  --shadow-glow: 0 0 0 1px #22d3ee29, 0 8px 32px -8px #22d3ee73;
+  --shadow-glow-strong: 0 0 0 1px #22d3ee3d, 0 12px 48px -8px #22d3ee99;
+  --shadow-elevated: 0 1px 0 0 #ffffff0a inset, 0 24px 64px -24px #000000;
+
+  /* ---- Easing / duraciones --------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+
+  /* ---- Animaciones ------------------------------------------------------ */
+  --animate-gradient-pan: gradient-pan 6s linear infinite;
+  --animate-nfc-pulse: nfc-pulse 2.4s var(--ease-in-out-quint) infinite;
+  --animate-signal-ring: signal-ring 2.6s var(--ease-out-expo) infinite;
+  --animate-mesh-a: mesh-a 26s ease-in-out infinite;
+  --animate-mesh-b: mesh-b 32s ease-in-out infinite;
+  --animate-mesh-c: mesh-c 38s ease-in-out infinite;
+  --animate-scroll-hint: scroll-hint 2.2s var(--ease-in-out-quint) infinite;
+
+  @keyframes gradient-pan {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  /* Arcos del logo. Empieza y termina en el estado de reposo, así que con
+     prefers-reduced-motion (duracion 0.01ms) los arcos quedan estáticos y
+     visibles, no apagados. */
+  @keyframes nfc-pulse {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    45% {
+      opacity: 1;
+    }
+  }
+
+  /* Luz ambiental del hero. Solo transform: los blobs son radial-gradients ya
+     difuminados, sin filter: blur, que en pantallas grandes cuesta caro.
+     Empiezan y terminan en reposo para que reduced-motion los deje quietos. */
+  @keyframes mesh-a {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+      transform: translate3d(8%, -6%, 0) scale(1.14);
+    }
+    66% {
+      transform: translate3d(-6%, 5%, 0) scale(0.92);
+    }
+  }
+
+  @keyframes mesh-b {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    40% {
+      transform: translate3d(-9%, 7%, 0) scale(0.9);
+    }
+    75% {
+      transform: translate3d(5%, 9%, 0) scale(1.12);
+    }
+  }
+
+  @keyframes mesh-c {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(7%, 8%, 0) scale(1.18);
+    }
+  }
+
+  /* Punto que desciende por la linea del indicador de scroll. */
+  @keyframes scroll-hint {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(320%);
+      opacity: 0;
+    }
+  }
+
+  /* Onda concentrica: el lenguaje visual del "tap" NFC. Se reutiliza en el FAB
+     y mas adelante en el hero. */
+  @keyframes signal-ring {
+    0% {
+      opacity: 0.45;
+      transform: scale(1);
+    }
+    70% {
+      opacity: 0;
+      transform: scale(1.9);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.9);
+    }
+  }
+}
+
+/* Variables no-tematizables (gradientes, texturas). Fuera de @theme porque
+   Tailwind no genera utilidades para ellas, pero se usan en todo el sitio. */
+:root {
+  --gradient-brand: linear-gradient(
+    135deg,
+    var(--color-accent),
+    var(--color-accent-2)
+  );
+  --gradient-brand-soft: linear-gradient(135deg, #22d3ee24, #7c3aed24);
+  /* Alto del nav + aire. Lo consume scroll-padding-top. */
+  --nav-offset: 5.5rem;
+
+  --gradient-text: linear-gradient(
+    135deg,
+    var(--color-text) 0%,
+    var(--color-muted) 100%
+  );
+
+  color-scheme: dark;
+
+  /* Escala de z-index del chrome. Documentada aqui para que ninguna seccion
+     invente su propio valor:
+       30  WhatsAppFAB
+       40  Overlay del menu movil
+       50  Navbar (queda por encima del overlay: logo y boton de cerrar)
+       60  NoiseOverlay (grano por encima de todo, sin capturar el puntero) */
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    /* Sostener el boton del QR en iOS abriria el menu contextual de Safari. */
+    -webkit-touch-callout: none;
+    /* Reserva el canal del scrollbar: bloquear el scroll con el menu movil
+       abierto no debe correr el layout. */
+    scrollbar-gutter: stable;
+    /* Offset de los anclas para que el nav sticky no tape el titulo de la
+       seccion. Lenis lo lee del <html> igual que el scroll nativo, asi que
+       una sola declaracion cubre los dos caminos. */
+    scroll-padding-top: var(--nav-offset);
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: #22d3ee47;
+    color: var(--color-text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* Texto con el gradiente de firma */
+  .text-gradient-brand {
+    background-image: var(--gradient-brand);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  /* Fondo con el gradiente de firma */
+  .bg-gradient-brand {
+    background-image: var(--gradient-brand);
+  }
+
+  .bg-gradient-brand-soft {
+    background-image: var(--gradient-brand-soft);
+  }
+}
+
+/* =========================================================================
+   Accesibilidad · prefers-reduced-motion
+   Ninguna animación es esencial para entender el contenido, así que las
+   colapsamos a un frame. Lenis se desactiva desde su provider.
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}
