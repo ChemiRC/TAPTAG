@@ -98,8 +98,10 @@ export function Pricing() {
 
       <Reveal delay={0.1}>
         <p className="text-dim mt-10 max-w-2xl text-xs leading-relaxed">
-          Los precios varían según el alcance y la personalización. Escríbenos y
-          te cotizamos sin compromiso.
+          Los tres planes incluyen un año de cambios ilimitados y reposición sin
+          costo. Pasado el primer año seguimos atendiéndote, con los cambios
+          cotizados aparte. Los precios varían según el alcance y la
+          personalización: escríbenos y te cotizamos sin compromiso.
         </p>
       </Reveal>
     </Section>

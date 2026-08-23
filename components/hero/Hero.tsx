@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { SplitText } from "gsap/SplitText";
 
 import { HeroBackground } from "@/components/hero/HeroBackground";
 import { NfcTapVisual } from "@/components/hero/NfcTapVisual";
@@ -12,7 +11,7 @@ import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { WHATSAPP_MESSAGES, buildWhatsAppUrl } from "@/lib/constants";
 
-gsap.registerPlugin(useGSAP, SplitText);
+gsap.registerPlugin(useGSAP);
 
 /** Ancla de la sección siguiente: la demo QR vs NFC. */
 const DEMO_ANCHOR = "#demo";
@@ -33,9 +32,6 @@ const REDUCED_MOTION_CONDITIONS = {
   motion: "(prefers-reduced-motion: no-preference)",
 };
 
-/** Si `document.fonts.ready` se atora, no dejamos el H1 atenuado para siempre. */
-const FONTS_TIMEOUT_MS = 1200;
-
 /**
  * Primera pantalla. Responde qué es esto, qué gano y qué hago ahora, con el
  * producto a la derecha haciendo lo único que hay que entender: un tap.
@@ -44,31 +40,15 @@ const FONTS_TIMEOUT_MS = 1200;
  * timeline al hidratar, el HTML del servidor se pintaría completo y visible y
  * luego se apagaría de golpe para animarse.
  *
- * El H1 es la excepción: es el candidato a LCP, así que en vez de `opacity: 0`
- * se pinta a 0.1 —invisible al ojo, medible por el navegador—. Sin JS, el
- * `<noscript>` devuelve todo a opacidad completa.
+ * El titular es la excepción y se pinta LEGIBLE desde el primer frame, solo
+ * desplazado 14px. El sitio es el destino de una demostración física: cuando el
+ * gerente acerca el celular al sticker, el titular tiene que estar ahí aunque el
+ * JS no haya llegado. Por eso no lleva reveal por palabras con SplitText: ese
+ * efecto exige esconder el texto hasta que carguen JS y tipografía, y en 3G eso
+ * eran casi seis segundos de titular invisible.
  */
 export function Hero() {
   const rootRef = useRef<HTMLElement>(null);
-  const [areFontsReady, setAreFontsReady] = useState(false);
-
-  // SplitText mide líneas reales: hay que esperar a Clash Display o los cortes
-  // se calculan con la fuente de respaldo y saltan al cargar la buena.
-  useEffect(() => {
-    let cancelled = false;
-    const markReady = () => {
-      if (!cancelled) setAreFontsReady(true);
-    };
-
-    Promise.race([
-      document.fonts.ready,
-      new Promise((resolve) => setTimeout(resolve, FONTS_TIMEOUT_MS)),
-    ]).then(markReady);
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   /**
    * Dos efectos separados a propósito.
@@ -87,6 +67,7 @@ export function Hero() {
       const trust = select("[data-hero='trust']");
       const hint = select("[data-hero='hint']");
       const visual = select("[data-hero='visual']");
+      const headline = select("[data-hero='headline']");
       const fadeIn = [...badge, ...subhead, ...ctas, ...trust, ...hint];
 
       const mm = gsap.matchMedia();
@@ -95,7 +76,11 @@ export function Hero() {
         const { reduce } = context.conditions as { reduce: boolean };
 
         if (reduce) {
-          gsap.set([...fadeIn, ...visual], { opacity: 1, y: 0, scale: 1 });
+          gsap.set([...fadeIn, ...visual, ...headline], {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          });
           gsap.set(subhead, { y: 0 });
           return;
         }
@@ -106,6 +91,9 @@ export function Hero() {
         gsap
           .timeline({ defaults: { ease: "power3.out", duration: 0.8 } })
           .fromTo(badge, rise, settled, 0)
+          // Solo `y`: el titular ya está pintado y legible desde el primer
+          // frame, así que la entrada lo acompaña en vez de revelarlo.
+          .fromTo(headline, { y: 14 }, { y: 0 }, 0.15)
           // Solo `y`, sin opacidad: el subhead es el bloque de texto más grande
           // y por tanto el candidato a LCP. Arrancando en `opacity: 0` el
           // navegador no podía medirlo hasta después de hidratar; con un
@@ -125,52 +113,6 @@ export function Hero() {
       return () => mm.revert();
     },
     { scope: rootRef },
-  );
-
-  /**
-   * El titular sí espera a la tipografía: SplitText mide líneas reales y con la
-   * fuente de respaldo los cortes saltarían al cargar la buena. Mientras tanto
-   * el H1 se queda a 0.1 de opacidad, medible por el navegador.
-   */
-  useGSAP(
-    () => {
-      const headline = gsap.utils.selector(rootRef)("[data-hero='headline']")[0];
-      if (!headline) return;
-
-      const mm = gsap.matchMedia();
-
-      mm.add(REDUCED_MOTION_CONDITIONS, (context) => {
-        const { reduce } = context.conditions as { reduce: boolean };
-
-        if (reduce) {
-          gsap.set(headline, { opacity: 1 });
-          return;
-        }
-
-        if (!areFontsReady) return;
-
-        const split = SplitText.create(headline, {
-          type: "lines,words",
-          mask: "lines",
-          linesClass: "hero-line",
-          wordsClass: "hero-word",
-        });
-
-        gsap.set(headline, { opacity: 1 });
-        gsap.from(split.words, {
-          yPercent: 100,
-          duration: 0.9,
-          stagger: 0.06,
-          ease: "power4.out",
-          delay: 0.15,
-        });
-
-        return () => split.revert();
-      });
-
-      return () => mm.revert();
-    },
-    { scope: rootRef, dependencies: [areFontsReady] },
   );
 
   return (
@@ -206,7 +148,7 @@ export function Hero() {
 
           <h1
             data-hero="headline"
-            style={{ opacity: 0.1 }}
+            style={{ transform: "translateY(14px)" }}
             className="font-display mt-6 text-6xl leading-[0.92] font-semibold tracking-[-0.03em] sm:text-7xl lg:text-8xl"
           >
             Un tap. Y ya.

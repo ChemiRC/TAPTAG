@@ -14,7 +14,6 @@ fricción) y luego el tap (que resuelve en menos de medio segundo).
 |---|---|---|
 | **Número de WhatsApp** | `NEXT_PUBLIC_WHATSAPP_NUMBER` | `52XXXXXXXXXX`. Los 8 CTA arman bien la URL pero apuntan a un número inexistente. **Bloqueante.** |
 | **Precios** | `lib/content.ts` → `PLANS` | `$XXX` en Prueba y Restaurante. **Bloqueante.** |
-| **Duración del acompañamiento** | `lib/content.ts` → TODO sobre `PLANS` | El modelo dice "pago único" con cambios y reposición sin cargo, pero no está definido hasta cuándo. **Decisión de negocio.** |
 | **Datos legales** | `app/aviso-de-privacidad/page.tsx` | Razón social, domicilio fiscal y fecha están como `[...]`. El texto es un **borrador base, no asesoría legal**. **Bloqueante.** |
 | **Testimonios** | `lib/content.ts` → `TESTIMONIALS` | De relleno. La sección **no se renderiza** mientras lo sean (ver abajo). |
 | **Dominio** | `NEXT_PUBLIC_SITE_URL` | Por defecto `https://taptag.mx`, que es una suposición. |

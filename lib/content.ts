@@ -25,10 +25,10 @@ export interface Plan {
  * placeholders imposibles de publicar por accidente: el dueño del negocio aún
  * tiene que definirlos.
  *
- * TODO (decisión de negocio, no de código): el modelo dice "pago único" y los
- * planes prometen cambios y reposición sin cargo. Falta definir hasta cuándo
- * dura ese acompañamiento —¿de por vida, o una ventana como el primer año?— y
- * si la reposición tiene tope. Mientras no se defina, el copy no promete plazo.
+ * El acompañamiento incluido dura el primer año: cambios ilimitados y
+ * reposición sin costo. Pasado el año los cambios se cotizan aparte. Se dice
+ * de frente en los tres planes, en la nota de la sección y en la FAQ — dicho
+ * así suena a garantía; escondido en una nota al pie sonaría a trampa.
  */
 export const PLANS: readonly Plan[] = [
   {
@@ -40,7 +40,7 @@ export const PLANS: readonly Plan[] = [
     features: [
       "Instalamos 3 puntos de contacto en tu local",
       "Configuramos el destino que elijas: menú o reseñas",
-      "Los cambios de destino los hacemos nosotros",
+      "Un año de cambios de destino, los hacemos nosotros",
       "Instalación en persona en Guadalajara",
     ],
     messageKey: "planPrueba",
@@ -56,8 +56,8 @@ export const PLANS: readonly Plan[] = [
       "Revisamos contigo dónde conviene colocarlos",
       "Diseño con tu logo y tus colores",
       "Menú y reseñas en paralelo, en puntos distintos",
-      "Cambios ilimitados, los hacemos nosotros",
-      "Reponemos cualquier punto que deje de servir",
+      "Un año de cambios ilimitados, los hacemos nosotros",
+      "Un año de reposición: si un punto deja de servir, lo cambiamos",
     ],
     messageKey: "planRestaurante",
     featured: true,
@@ -73,7 +73,7 @@ export const PLANS: readonly Plan[] = [
       "Alcance a medida, sucursal por sucursal",
       "Displays además de los puntos en mesa",
       "Un destino distinto por sucursal",
-      "Un contacto directo por WhatsApp para cambios",
+      "Un año de acompañamiento, con contacto directo por WhatsApp",
     ],
     messageKey: "planCadena",
   },
@@ -182,19 +182,19 @@ export const FAQS: readonly Faq[] = [
     id: "cambiar-destino",
     question: "¿Puedo cambiar a dónde lleva después?",
     answer:
-      "Sí, cuantas veces quieras. Nos avisas por WhatsApp y lo reprogramamos nosotros el mismo día. No tienes que reimprimir nada ni volver a contratar.",
+      "Sí. Durante el primer año, cuantas veces quieras y sin costo: nos avisas por WhatsApp y lo reprogramamos nosotros el mismo día. Pasado el año seguimos haciéndolo, solo que el cambio se cotiza aparte. En ningún caso tienes que reimprimir nada ni volver a contratar.",
   },
   {
     id: "despues-de-instalar",
     question: "¿Qué pasa después de la instalación?",
     answer:
-      "Te queda un contacto directo por WhatsApp. Si quieres cambiar el destino, mover un punto de lugar o reponer alguno, nos escribes y lo resolvemos. No hay ticket ni call center.",
+      "Te queda un contacto directo por WhatsApp. Durante el primer año, cambiar el destino, mover un punto de lugar o reponer alguno va incluido: nos escribes y lo resolvemos. Pasado el año seguimos ahí; los cambios se cotizan aparte. No hay ticket ni call center.",
   },
   {
     id: "durabilidad",
     question: "¿Se despega o se arruina con la limpieza?",
     answer:
-      "Los puntos aguantan el uso diario de un restaurante: líquidos, grasa y limpieza constante. Si alguno deja de servir, lo reponemos nosotros.",
+      "Los puntos aguantan el uso diario de un restaurante: líquidos, grasa y limpieza constante. Si alguno deja de servir durante el primer año, lo reponemos sin costo.",
   },
   {
     id: "instalacion",
@@ -206,7 +206,7 @@ export const FAQS: readonly Faq[] = [
     id: "mensualidad",
     question: "¿Hay mensualidad o renovación?",
     answer:
-      "No. El servicio se contrata una vez y no hay cargos recurrentes ni renovación.",
+      "No. El servicio se contrata una vez y no hay cargos recurrentes ni renovación. El primer año de cambios y reposición va incluido; pasado ese año solo pagas los cambios que pidas.",
   },
   {
     id: "cobertura",
@@ -243,7 +243,7 @@ export const FEATURES: readonly Feature[] = [
     id: "pago-unico",
     title: "Sin mensualidades",
     description:
-      "Contratas el servicio una vez y no hay cargos recurrentes. Ni suscripción, ni renovación, ni letras chiquitas.",
+      "Contratas el servicio una vez y no hay cargos recurrentes. El primer año de acompañamiento va incluido: ni suscripción, ni renovación, ni letras chiquitas.",
     className: "md:col-span-3 md:row-span-2",
     featured: true,
   },
@@ -251,7 +251,7 @@ export const FEATURES: readonly Feature[] = [
     id: "reprogramar",
     title: "Los cambios los hacemos nosotros",
     description:
-      "Cambias de menú, de promoción o de destino: nos escribes y lo reprogramamos. Tú no tocas nada ni reimprimes nada.",
+      "Cambias de menú, de promoción o de destino: nos escribes y lo reprogramamos. Ilimitados durante el primer año; después se cotizan aparte.",
     className: "md:col-span-3",
   },
   {
@@ -272,7 +272,7 @@ export const FEATURES: readonly Feature[] = [
     id: "reposicion",
     title: "Si algo falla, lo reponemos",
     description:
-      "Los puntos aguantan líquidos, grasa y limpieza diaria. Si alguno deja de servir, venimos y lo cambiamos.",
+      "Los puntos aguantan líquidos, grasa y limpieza diaria. Si alguno deja de servir durante el primer año, venimos y lo cambiamos sin costo.",
     className: "md:col-span-2",
   },
   {
