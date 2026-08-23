@@ -60,7 +60,7 @@ export default function AvisoDePrivacidad() {
             <li>Correo electrónico, si decides compartirlo.</li>
             <li>
               Domicilio del establecimiento, únicamente cuando sea necesario
-              para entregar o instalar el producto.
+              para instalar el sistema en tu establecimiento.
             </li>
           </ul>
           <p className="mt-3">
@@ -74,7 +74,7 @@ export default function AvisoDePrivacidad() {
           <p>Usamos tus datos para las siguientes finalidades primarias:</p>
           <ul className="mt-3 flex list-disc flex-col gap-2 pl-5">
             <li>Responder tu solicitud de cotización o información.</li>
-            <li>Elaborar, entregar e instalar el producto contratado.</li>
+            <li>Preparar e instalar el sistema contratado.</li>
             <li>Dar seguimiento posventa y soporte.</li>
             <li>Cumplir obligaciones fiscales y contables cuando apliquen.</li>
           </ul>
@@ -91,8 +91,8 @@ export default function AvisoDePrivacidad() {
             No transferimos tus datos personales a terceros sin tu
             consentimiento, salvo en los supuestos previstos por el artículo 37
             de la LFPDPPP. Podemos compartir los datos estrictamente necesarios
-            con proveedores de mensajería o paquetería para poder entregarte el
-            producto.
+            con proveedores de mensajería o paquetería cuando haga falta
+            hacerte llegar material fuera de la zona de instalación.
           </p>
         </Block>
 

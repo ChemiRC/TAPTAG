@@ -14,6 +14,7 @@ fricción) y luego el tap (que resuelve en menos de medio segundo).
 |---|---|---|
 | **Número de WhatsApp** | `NEXT_PUBLIC_WHATSAPP_NUMBER` | `52XXXXXXXXXX`. Los 8 CTA arman bien la URL pero apuntan a un número inexistente. **Bloqueante.** |
 | **Precios** | `lib/content.ts` → `PLANS` | `$XXX` en Prueba y Restaurante. **Bloqueante.** |
+| **Duración del acompañamiento** | `lib/content.ts` → TODO sobre `PLANS` | El modelo dice "pago único" con cambios y reposición sin cargo, pero no está definido hasta cuándo. **Decisión de negocio.** |
 | **Datos legales** | `app/aviso-de-privacidad/page.tsx` | Razón social, domicilio fiscal y fecha están como `[...]`. El texto es un **borrador base, no asesoría legal**. **Bloqueante.** |
 | **Testimonios** | `lib/content.ts` → `TESTIMONIALS` | De relleno. La sección **no se renderiza** mientras lo sean (ver abajo). |
 | **Dominio** | `NEXT_PUBLIC_SITE_URL` | Por defecto `https://taptag.mx`, que es una suposición. |
@@ -62,7 +63,7 @@ npx tsc --noEmit  # typecheck
 | `components/ui/` | Primitivos: `Button`, `Section`, `Reveal`, `CountUp`, `NfcRipple`, `MeshGradient`, `GridBackground`, `NoiseOverlay`. |
 | `components/seo/` | `StructuredData`: JSON-LD de `LocalBusiness` y `FAQPage`. |
 | `lib/constants.ts` | `WHATSAPP_NUMBER`, `buildWhatsAppUrl`, `SITE`, `WHATSAPP_MESSAGES`, `NAV_LINKS`. |
-| `lib/content.ts` | `PLANS`, `TESTIMONIALS`, `FAQS` y la guarda de testimonios. |
+| `lib/content.ts` | `PLANS`, `FEATURES`, `TESTIMONIALS`, `FAQS` y la guarda de testimonios. Todo el copy de secciones vive aquí. |
 | `lib/hooks/` | `usePrefersReducedMotion`, `useIsTouchDevice`, `useScrollLock`, `useFocusTrap`. |
 | `assets/fonts/` | TTF de Clash Display, solo para generar la imagen OG en build. No se sirve. |
 | `public/fonts/` | Clash Display en woff2, servido por `next/font/local`. |

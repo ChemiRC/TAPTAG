@@ -1,15 +1,19 @@
 # TAPTAG
 
-> Stickers y displays NFC premium para restaurantes en Guadalajara y Zapopan,
-> Jalisco, México. Reemplazan el código QR impreso de las mesas: el comensal
-> acerca el celular y llega en un solo tap al menú digital o al perfil de
-> Google Reviews del establecimiento.
+> Servicio de instalación y operación de sistemas NFC para restaurantes y
+> locales en Guadalajara y Zapopan, Jalisco, México. El objetivo del servicio es
+> que el negocio consiga más reseñas de Google y que sus clientes lleguen al
+> menú digital sin fricción: un solo tap con el celular, sin apps ni QR.
 
 ## Qué es
 
-TAPTAG vende etiquetas NFC físicas, de compra única, que un restaurante pega en
-sus mesas, mostrador, carta o terminal de pago. No hay app que descargar, no hay
-suscripción y el sticker no necesita batería ni conexión propia.
+TAPTAG no vende etiquetas: instala y opera el sistema. El equipo revisa el local,
+define dónde conviene colocar los puntos de contacto NFC, los configura con el
+destino que el negocio elija, los instala en persona y se hace cargo de los
+cambios posteriores.
+
+Los puntos NFC son el medio. Lo que el restaurantero contrata es el resultado
+—más reseñas, mejor experiencia en mesa— y el acompañamiento.
 
 ## Por qué existe
 
@@ -17,27 +21,32 @@ Escanear un QR toma de tres a cinco pasos —sacar el celular, abrir la cámara,
 apuntar y sostener, esperar el aviso, tocar el enlace— y buena parte de los
 comensales abandona antes de terminar. Con NFC es un solo gesto.
 
-## Cómo funciona
+## Cómo funciona el servicio
 
-1. El cliente define el destino: menú digital, reseñas de Google, WhatsApp u otro.
-2. TAPTAG entrega los stickers ya programados y personalizados.
-3. El comensal acerca el celular y llega al destino. Funciona con iPhone 7 en
-   adelante y prácticamente cualquier Android reciente.
+1. El negocio define a dónde quiere llevar a sus clientes: menú digital, reseñas
+   de Google, WhatsApp u otro destino.
+2. TAPTAG configura los puntos e instala en persona en el local.
+3. El comensal acerca el celular y llega. Funciona con iPhone 7 en adelante y
+   prácticamente cualquier Android reciente.
 
-El destino se puede reprogramar cuantas veces se quiera sin reimprimir ni volver
-a comprar.
+Cuando el negocio quiere cambiar el destino, mover un punto o reponer alguno,
+escribe por WhatsApp y TAPTAG lo resuelve. No hay que reimprimir ni volver a
+contratar.
 
 ## Modelo comercial
 
-Compra única, sin mensualidades ni renovaciones. Tres paquetes: Prueba (3
-stickers), Restaurante (12 stickers, personalizado) y Cadena (a medida, para
-varias sucursales). Cotización y contacto por WhatsApp.
+Se contrata una vez, sin mensualidades ni renovación. Tres niveles de servicio
+según el alcance: Prueba (3 puntos de contacto), Restaurante (hasta 12 puntos,
+personalizado, con reposición incluida) y Cadena (a medida, para varias
+sucursales). Cotización y contacto por WhatsApp.
 
 ## Zona de servicio
 
-Guadalajara, Zapopan, Tlaquepaque y Tonalá con entrega en persona. Envíos a todo
-México.
+Instalación en persona en la zona metropolitana de Guadalajara: Guadalajara,
+Zapopan, Tlaquepaque y Tonalá. Fuera de esa zona se evalúa caso por caso, con
+el sistema configurado y acompañamiento por WhatsApp durante la instalación.
 
 ## Contacto
 
-WhatsApp. Los enlaces del sitio abren una conversación con mensaje precargado.
+WhatsApp. Los enlaces del sitio abren una conversación con mensaje precargado
+distinto según la sección desde la que se escribe.

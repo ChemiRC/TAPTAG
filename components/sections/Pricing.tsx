@@ -75,8 +75,8 @@ export function Pricing() {
         </h2>
 
         <p className="text-muted mt-5 text-lg">
-          Sin suscripción, sin renovación, sin costos escondidos. Lo pagas una
-          vez y es tuyo.
+          Contratas el servicio una vez: instalación, configuración y los
+          cambios que necesites después. Sin suscripción ni costos escondidos.
         </p>
       </Reveal>
 
@@ -98,8 +98,8 @@ export function Pricing() {
 
       <Reveal delay={0.1}>
         <p className="text-dim mt-10 max-w-2xl text-xs leading-relaxed">
-          Los precios pueden variar según cantidad y personalización. Escríbenos
-          y te cotizamos sin compromiso.
+          Los precios varían según el alcance y la personalización. Escríbenos y
+          te cotizamos sin compromiso.
         </p>
       </Reveal>
     </Section>

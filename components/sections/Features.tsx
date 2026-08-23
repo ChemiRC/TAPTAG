@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import type { ReactNode } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,63 +18,20 @@ import {
 } from "@/components/features/FeatureVisuals";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { FEATURES } from "@/lib/content";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-/**
- * Cada celda responde una objeción real del dueño de restaurante, no solo
- * enumera un beneficio. El orden es el narrativo: en móvil se apilan tal cual,
- * con la destacada primero.
- */
-const CELLS = [
-  {
-    title: "Sin mensualidades",
-    description:
-      "Lo compras una vez y es tuyo. No hay suscripción, no hay renovación, no hay letras chiquitas.",
-    className: "md:col-span-3 md:row-span-2",
-    featured: true,
-    visual: <OneTimePaymentVisual />,
-  },
-  {
-    title: "Se reprograma cuando quieras",
-    description:
-      "Cambias de menú, de promoción o de destino sin reimprimir ni volver a comprar.",
-    className: "md:col-span-3",
-    visual: <ReprogramVisual />,
-  },
-  {
-    title: "Funciona sin internet propio",
-    description:
-      "El sticker no necesita conexión ni batería. Solo el celular de tu cliente.",
-    className: "md:col-span-3",
-    visual: <NoPowerVisual />,
-  },
-  {
-    title: "iPhone 7+ y Android",
-    description: "Prácticamente cualquier celular de los últimos años.",
-    className: "md:col-span-2",
-    visual: <DevicesVisual />,
-  },
-  {
-    title: "Aguanta el uso diario",
-    description: "Resistente a líquidos, grasa y limpieza constante.",
-    className: "md:col-span-2",
-    visual: <DurabilityVisual />,
-  },
-  {
-    title: "Con tu logo y tus colores",
-    description:
-      "Diseñado para que se vea como parte de tu marca, no como un accesorio.",
-    className: "md:col-span-2",
-    visual: <BrandingVisual />,
-  },
-  {
-    title: "Menú digital o reseñas de Google",
-    description: "Tú decides a dónde llevan. O ambos, con stickers distintos.",
-    className: "md:col-span-6",
-    visual: <DestinationsVisual />,
-  },
-] as const;
+/** Cada celda enlaza con su composición visual por id. El texto vive en lib/content.ts. */
+const VISUALS: Record<string, ReactNode> = {
+  "pago-unico": <OneTimePaymentVisual />,
+  reprogramar: <ReprogramVisual />,
+  "sin-internet": <NoPowerVisual />,
+  dispositivos: <DevicesVisual />,
+  reposicion: <DurabilityVisual />,
+  marca: <BrandingVisual />,
+  destinos: <DestinationsVisual />,
+};
 
 /**
  * Bento de beneficios y manejo de objeciones.
@@ -153,14 +111,14 @@ export function Features() {
           <style>{`[data-bento-cell]{opacity:1 !important}`}</style>
         </noscript>
 
-        {CELLS.map((cell) => (
+        {FEATURES.map((feature) => (
           <BentoCell
-            key={cell.title}
-            title={cell.title}
-            description={cell.description}
-            className={cell.className}
-            featured={"featured" in cell ? cell.featured : false}
-            visual={cell.visual}
+            key={feature.id}
+            title={feature.title}
+            description={feature.description}
+            className={feature.className}
+            featured={feature.featured ?? false}
+            visual={VISUALS[feature.id]}
           />
         ))}
       </div>

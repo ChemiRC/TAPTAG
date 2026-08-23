@@ -24,6 +24,11 @@ export interface Plan {
  * TODO: precios reales — los tres montos están como `$XXX` a propósito. Son
  * placeholders imposibles de publicar por accidente: el dueño del negocio aún
  * tiene que definirlos.
+ *
+ * TODO (decisión de negocio, no de código): el modelo dice "pago único" y los
+ * planes prometen cambios y reposición sin cargo. Falta definir hasta cuándo
+ * dura ese acompañamiento —¿de por vida, o una ventana como el primer año?— y
+ * si la reposición tiene tope. Mientras no se defina, el copy no promete plazo.
  */
 export const PLANS: readonly Plan[] = [
   {
@@ -31,12 +36,12 @@ export const PLANS: readonly Plan[] = [
     name: "Prueba",
     price: "$XXX",
     priceNote: "MXN · pago único",
-    tagline: "Para probarlo en tu negocio",
+    tagline: "Para ver cómo funciona en tu negocio",
     features: [
-      "3 stickers NFC",
-      "Destino a tu elección (menú o reseñas)",
-      "Reprogramación incluida",
-      "Entrega en Guadalajara",
+      "Instalamos 3 puntos de contacto en tu local",
+      "Configuramos el destino que elijas: menú o reseñas",
+      "Los cambios de destino los hacemos nosotros",
+      "Instalación en persona en Guadalajara",
     ],
     messageKey: "planPrueba",
   },
@@ -45,14 +50,14 @@ export const PLANS: readonly Plan[] = [
     name: "Restaurante",
     price: "$XXX",
     priceNote: "MXN · pago único",
-    tagline: "Para cubrir todas tus mesas",
+    tagline: "Para cubrir todo tu local",
     features: [
-      "12 stickers NFC",
-      "Diseño con tu logo y colores",
-      "Menú y reseñas (destinos distintos)",
-      "Reprogramación ilimitada",
-      "Instalación asistida",
-      "Entrega en Guadalajara",
+      "Instalamos hasta 12 puntos: mesas, barra y terminal",
+      "Revisamos contigo dónde conviene colocarlos",
+      "Diseño con tu logo y tus colores",
+      "Menú y reseñas en paralelo, en puntos distintos",
+      "Cambios ilimitados, los hacemos nosotros",
+      "Reponemos cualquier punto que deje de servir",
     ],
     messageKey: "planRestaurante",
     featured: true,
@@ -65,10 +70,10 @@ export const PLANS: readonly Plan[] = [
     priceNote: "Cotización a medida",
     tagline: "Para varias sucursales",
     features: [
-      "Cantidad a medida",
-      "Displays premium además de stickers",
-      "Destinos por sucursal",
-      "Soporte prioritario por WhatsApp",
+      "Alcance a medida, sucursal por sucursal",
+      "Displays además de los puntos en mesa",
+      "Un destino distinto por sucursal",
+      "Un contacto directo por WhatsApp para cambios",
     ],
     messageKey: "planCadena",
   },
@@ -171,36 +176,117 @@ export const FAQS: readonly Faq[] = [
     id: "sin-nfc",
     question: "¿Qué pasa si alguien tiene un celular sin NFC?",
     answer:
-      "Cada sticker puede llevar también un QR impreso como respaldo, sin costo extra. Así nadie se queda fuera.",
+      "Cada punto puede llevar también un QR impreso como respaldo, sin costo extra. Así nadie se queda fuera.",
   },
   {
     id: "cambiar-destino",
     question: "¿Puedo cambiar a dónde lleva después?",
     answer:
-      "Sí, cuantas veces quieras. Nos avisas por WhatsApp y lo reprogramamos. No hay que reimprimir ni volver a comprar.",
+      "Sí, cuantas veces quieras. Nos avisas por WhatsApp y lo reprogramamos nosotros el mismo día. No tienes que reimprimir nada ni volver a contratar.",
+  },
+  {
+    id: "despues-de-instalar",
+    question: "¿Qué pasa después de la instalación?",
+    answer:
+      "Te queda un contacto directo por WhatsApp. Si quieres cambiar el destino, mover un punto de lugar o reponer alguno, nos escribes y lo resolvemos. No hay ticket ni call center.",
   },
   {
     id: "durabilidad",
     question: "¿Se despega o se arruina con la limpieza?",
     answer:
-      "Están hechos para el uso diario de un restaurante: resisten líquidos, grasa y limpieza constante. Si alguno falla, lo reponemos.",
+      "Los puntos aguantan el uso diario de un restaurante: líquidos, grasa y limpieza constante. Si alguno deja de servir, lo reponemos nosotros.",
   },
   {
-    id: "entrega",
-    question: "¿Cuánto tarda la entrega?",
+    id: "instalacion",
+    question: "¿Cuánto tarda en quedar instalado?",
     answer:
-      "Depende de la cantidad y la personalización. Escríbenos por WhatsApp y te damos una fecha concreta el mismo día.",
+      "Depende del alcance y de la personalización. Escríbenos por WhatsApp y te damos una fecha concreta el mismo día.",
   },
   {
     id: "mensualidad",
     question: "¿Hay mensualidad o renovación?",
     answer:
-      "No. Es compra única. No hay suscripción ni cargos recurrentes.",
+      "No. El servicio se contrata una vez y no hay cargos recurrentes ni renovación.",
   },
   {
-    id: "envios",
-    question: "¿Hacen envíos fuera de Guadalajara?",
+    id: "cobertura",
+    question: "¿Solo trabajan en Guadalajara?",
     answer:
-      "Sí, enviamos a todo México. En la zona metropolitana de Guadalajara podemos entregar en persona.",
+      "Instalamos en persona en toda la zona metropolitana: Guadalajara, Zapopan, Tlaquepaque y Tonalá. Si estás fuera, escríbenos y lo vemos: te lo dejamos configurado y te acompañamos por WhatsApp durante la instalación.",
+  },
+] as const;
+
+/* ==========================================================================
+ * BENEFICIOS (bento)
+ * ========================================================================== */
+
+export interface Feature {
+  /** Enlaza la celda con su composición visual en la sección. */
+  id: string;
+  title: string;
+  description: string;
+  /** Espacio que ocupa en la retícula de 6 columnas. */
+  className: string;
+  featured?: boolean;
+}
+
+/**
+ * Cada celda responde una objeción real del dueño de restaurante, no solo
+ * enumera un beneficio. El orden es el narrativo: en móvil se apilan tal cual,
+ * con la destacada primero.
+ *
+ * El texto vive aquí y no en la sección para que ajustar copy no obligue a
+ * tocar componentes.
+ */
+export const FEATURES: readonly Feature[] = [
+  {
+    id: "pago-unico",
+    title: "Sin mensualidades",
+    description:
+      "Contratas el servicio una vez y no hay cargos recurrentes. Ni suscripción, ni renovación, ni letras chiquitas.",
+    className: "md:col-span-3 md:row-span-2",
+    featured: true,
+  },
+  {
+    id: "reprogramar",
+    title: "Los cambios los hacemos nosotros",
+    description:
+      "Cambias de menú, de promoción o de destino: nos escribes y lo reprogramamos. Tú no tocas nada ni reimprimes nada.",
+    className: "md:col-span-3",
+  },
+  {
+    id: "sin-internet",
+    title: "No depende de tu internet",
+    description:
+      "El sistema no necesita conexión ni batería en tu local. Solo el celular de tu cliente.",
+    className: "md:col-span-3",
+  },
+  {
+    id: "dispositivos",
+    title: "iPhone 7+ y Android",
+    description:
+      "Tus clientes no necesitan nada especial: prácticamente cualquier celular de los últimos años.",
+    className: "md:col-span-2",
+  },
+  {
+    id: "reposicion",
+    title: "Si algo falla, lo reponemos",
+    description:
+      "Los puntos aguantan líquidos, grasa y limpieza diaria. Si alguno deja de servir, venimos y lo cambiamos.",
+    className: "md:col-span-2",
+  },
+  {
+    id: "marca",
+    title: "Lo diseñamos con tu marca",
+    description:
+      "Con tu logo y tus colores, para que se vea como parte de tu local y no como un accesorio pegado.",
+    className: "md:col-span-2",
+  },
+  {
+    id: "destinos",
+    title: "Tú decides a dónde llevamos a tus clientes",
+    description:
+      "A tu menú digital, a tus reseñas de Google, o a los dos en puntos distintos. Lo configuramos nosotros.",
+    className: "md:col-span-6",
   },
 ] as const;

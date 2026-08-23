@@ -43,7 +43,7 @@ export const SITE = {
   serviceArea: ["Guadalajara", "Zapopan", "Tlaquepaque", "Tonalá"],
   tagline: "Un tap y listo. Adiós al QR.",
   description:
-    "Stickers y displays NFC premium para restaurantes. Tus comensales acercan el celular y llegan a tu menú o a tus reseñas de Google al instante. Sin apps, sin mensualidades.",
+    "Instalamos y operamos un sistema NFC en tu restaurante para que consigas más reseñas de Google y tus clientes lleguen al menú sin fricción. Un tap, sin apps y sin mensualidades.",
   url: SITE_URL,
   /**
    * TODO: correo real. Mientras sea `null` el footer no muestra la línea y el
@@ -60,10 +60,10 @@ export const SITE = {
  * la página escribió el prospecto y qué le interesó.
  */
 export const WHATSAPP_MESSAGES = {
-  hero: `Hola ${SITE.name}, vi su página y quiero cotizar stickers NFC para mi restaurante 🙌`,
-  nav: `Hola ${SITE.name}, quiero cotizar stickers NFC para mi restaurante 🙌`,
-  fab: `Hola ${SITE.name}, tengo una duda sobre los stickers NFC 🙌`,
-  footer: `Hola ${SITE.name}, quiero información sobre los stickers NFC para mi restaurante.`,
+  hero: `Hola ${SITE.name}, vi su página y quiero cotizar el servicio para mi restaurante 🙌`,
+  nav: `Hola ${SITE.name}, quiero cotizar el sistema NFC para mi restaurante 🙌`,
+  fab: `Hola ${SITE.name}, tengo una duda sobre cómo funciona el servicio 🙌`,
+  footer: `Hola ${SITE.name}, quiero información sobre el servicio para mi restaurante.`,
   planPrueba: `Hola ${SITE.name}, me interesa el plan Prueba para mi negocio 🙌`,
   planRestaurante: `Hola ${SITE.name}, me interesa el plan Restaurante para mi negocio 🙌`,
   planCadena: `Hola ${SITE.name}, tengo varias sucursales y quiero una cotización a medida 🙌`,
