@@ -14,13 +14,18 @@ import { cn } from "@/lib/utils";
  * Cada paso ocupa la misma quinta parte de la barra pero dura distinto, así que
  * el avance sale irregular solo: se arrastra en "Buscando el código" y pega un
  * brinco en "Código detectado". No hace falta simular el tirón aparte.
+ *
+ * El total son 3 segundos, no los 8 que toma en una mesa real. El sitio es el
+ * destino de una demostración física: al gerente que acaba de sostener el
+ * celular sobre un QR de verdad, repetírselo entero le sobra. Aquí va
+ * comprimido, y el copy del final lo dice en vez de fingir el reloj.
  */
 const QR_STEPS = [
-  { message: "Abriendo la cámara…", duration: 1.3 },
-  { message: "Enfocando…", duration: 1.7 },
-  { message: "Buscando el código…", duration: 2.3 },
-  { message: "Código detectado", duration: 0.7 },
-  { message: "Cargando la página…", duration: 1.6 },
+  { message: "Abriendo la cámara…", duration: 0.5 },
+  { message: "Enfocando…", duration: 0.7 },
+  { message: "Buscando el código…", duration: 0.9 },
+  { message: "Código detectado", duration: 0.3 },
+  { message: "Cargando la página…", duration: 0.6 },
 ] as const;
 
 const TOTAL_SECONDS = QR_STEPS.reduce((sum, step) => sum + step.duration, 0);
@@ -39,7 +44,7 @@ const MESSAGES = {
   holding: "Ahora escanea…",
   slipped: "Se movió. Vuelve a intentar.",
   paused: "Se te movió tantito. Vuelve a sostener para seguir.",
-  done: "Listo. Tardaste 8 segundos.",
+  done: "Listo. Aquí fueron 3 segundos. En una mesa real, entre 8 y 15.",
 } as const;
 
 type Phase = "idle" | "holding" | "paused" | "slipped" | "done";

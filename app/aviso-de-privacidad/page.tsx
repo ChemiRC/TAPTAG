@@ -65,8 +65,15 @@ export default function AvisoDePrivacidad() {
           </ul>
           <p className="mt-3">
             No recabamos datos personales sensibles, ni datos patrimoniales o
-            financieros a través de este sitio. Este sitio no utiliza cookies de
-            publicidad ni de seguimiento de terceros.
+            financieros a través de este sitio.
+          </p>
+          <p className="mt-3">
+            Este sitio no utiliza cookies de publicidad ni de seguimiento. Sí
+            registramos estadísticas de uso anónimas y agregadas —número de
+            visitas y por qué medio se llegó, si fue por un sticker NFC o por un
+            código QR— a través de la analítica de nuestro proveedor de
+            alojamiento. Esas estadísticas no permiten identificarte ni se
+            asocian con tus datos de contacto.
           </p>
         </Block>
 

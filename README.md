@@ -4,9 +4,10 @@ Landing de TAPTAG: stickers y displays NFC premium para restaurantes en
 Guadalajara y Zapopan. Reemplazan el QR impreso de la mesa — el comensal acerca
 el celular y cae en el menú digital o en el perfil de Google Reviews.
 
-El sitio replica el pitch de venta presencial: hay una demo interactiva donde el
-visitante primero usa un QR simulado (y siente los siete segundos y medio de
-fricción) y luego el tap (que resuelve en menos de medio segundo).
+El sitio es el **destino de una demostración física**: en la visita se le pide al
+gerente que pruebe un QR impreso y un sticker NFC, y ambos llevan aquí. Para
+quien llega en frío por un link, la demo interactiva reproduce el argumento —el
+QR comprimido a 3 segundos, el tap en menos de medio.
 
 ## ⚠️ Qué actualizar antes de publicar
 
@@ -101,6 +102,34 @@ Lo que se comprobó en el cierre: Lighthouse móvil, recorrido completo por
 teclado, recorrido con `prefers-reduced-motion`, el sitio sin JavaScript, el
 "sostener" del QR con eventos touch reales, los tres viewports de pitch
 (375×667, 390×844, 412×915) y ausencia de overflow horizontal de 320 a 1920px.
+
+## Medir por qué medio llegó cada visita
+
+El sticker NFC y el QR impreso llevan a la misma página, pero con un parámetro
+distinto:
+
+| Medio físico | URL que se programa |
+|---|---|
+| Sticker NFC | `https://tu-dominio.com/?v=nfc` |
+| QR impreso | `https://tu-dominio.com/?v=qr` |
+
+`components/analytics/VisitOrigin.tsx` lo lee y lo registra como evento
+`origen_visita`. **No cambia nada visible**: la página es idéntica venga por
+donde venga, y un valor desconocido se ignora. Mantener dos versiones sería
+doblar lo que puede fallar delante de un cliente para un beneficio marginal.
+
+El `canonical` apunta siempre a `/`, así que los parámetros no generan contenido
+duplicado para los buscadores.
+
+La analítica solo se monta cuando `process.env.VERCEL === "1"`, es decir en
+producción: fuera de ahí el script no existe y pediría un 404 en cada carga.
+
+> **Para que el conteo exista hay que activar Web Analytics** en Vercel →
+> proyecto → pestaña **Analytics**. Los eventos personalizados (que es lo que
+> distingue `nfc` de `qr`) requieren plan **Pro**; en Hobby se registran las
+> visitas totales pero no el desglose por medio. Si te quedas en Hobby, la
+> alternativa sin costo es apuntar cada medio a una ruta distinta —`/nfc` y
+> `/qr`— y leer el desglose en el conteo de páginas.
 
 ## Variables de entorno
 

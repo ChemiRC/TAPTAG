@@ -31,8 +31,8 @@ export function Demo() {
         </h2>
 
         <p className="text-muted mt-5 text-lg">
-          Lo mismo que le pedimos a los dueños de restaurante cuando los
-          visitamos. Primero el QR. Luego el tap. La diferencia se siente sola.
+          ¿No lo probaste con tus manos? Pruébalo aquí. Primero el QR, luego el
+          tap: la diferencia se siente sola.
         </p>
       </Reveal>
 

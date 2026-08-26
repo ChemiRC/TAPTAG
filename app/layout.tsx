@@ -3,6 +3,9 @@ import type { Metadata, Viewport } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { WhatsAppFAB } from "@/components/layout/WhatsAppFAB";
+import { Analytics } from "@vercel/analytics/next";
+
+import { VisitOrigin } from "@/components/analytics/VisitOrigin";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
@@ -84,6 +87,18 @@ export default function RootLayout({
 
         <NoiseOverlay />
         <StructuredData />
+
+        {/*
+          Solo en Vercel: fuera de ahí el script de analítica no existe y
+          pediría un 404 en cada carga local. `VERCEL` la define la propia
+          plataforma en build, así que esto se resuelve al compilar.
+        */}
+        {process.env.VERCEL === "1" && (
+          <>
+            <Analytics />
+            <VisitOrigin />
+          </>
+        )}
       </body>
     </html>
   );
