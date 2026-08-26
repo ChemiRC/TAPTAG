@@ -1,24 +1,22 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Blobs de luz ambiental. Son `radial-gradient` ya difuminados por su propia
- * caída a transparente: nada de `filter: blur`, que a este tamaño cuesta caro
- * en móvil de gama media. Solo se mueven con `transform`.
+ * Calor de fondo. Sobre papel esto NO puede ser luz ambiental: un radial de
+ * color al 20% sobre blanco no se lee como luz, se lee como una mancha. Por eso
+ * son dos y no tres, y al 4-5.5% — apenas lo justo para que el fondo no sea
+ * blanco plano.
+ *
+ * Siguen sin `filter: blur` (caro en móvil de gama media) y solo se mueven con
+ * `transform`.
  */
 const MESH_BLOBS = [
   {
     color: "var(--color-accent)",
-    className: "animate-mesh-a -top-[20%] -left-[15%] size-[75vmax] opacity-20",
+    className: "animate-mesh-a -top-[25%] -right-[10%] size-[70vmax] opacity-[0.055]",
   },
   {
     color: "var(--color-accent-2)",
-    className:
-      "animate-mesh-b top-[10%] -right-[20%] size-[70vmax] opacity-[0.22]",
-  },
-  {
-    color: "var(--color-accent)",
-    className:
-      "animate-mesh-c -bottom-[30%] left-[20%] size-[60vmax] opacity-[0.14]",
+    className: "animate-mesh-b -bottom-[30%] -left-[15%] size-[62vmax] opacity-[0.04]",
   },
 ] as const;
 

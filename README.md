@@ -52,7 +52,7 @@ npx tsc --noEmit  # typecheck
 | --- | --- |
 | `app/globals.css` | Design system completo: paleta, tipografías, radios, sombras, keyframes y el bloque de `prefers-reduced-motion`. |
 | `app/layout.tsx` | Metadata, fuentes, chrome persistente y JSON-LD. |
-| `app/opengraph-image.tsx` · `icon.tsx` · `apple-icon.tsx` | Imágenes generadas en build con `ImageResponse`. Sin assets externos. |
+| `app/opengraph-image.tsx` · `icon.tsx` · `apple-icon.tsx` | Imágenes generadas en build con `ImageResponse`. Sin assets externos. **Ver nota de mantenimiento.** |
 | `app/sitemap.ts` · `app/robots.ts` | Rutas reales, derivadas de `SITE.url`. |
 | `components/sections/` | Las ocho secciones: `Problem`, `Demo`, `HowItWorks`, `Features`, `Quote`, `Testimonials`, `Faq`, `FinalCta`. |
 | `components/hero/` | Hero: timeline GSAP + SplitText, `NfcTapVisual`, fondo y scroll indicator. |
@@ -84,6 +84,45 @@ npx tsc --noEmit  # typecheck
   hooks arrancan en `false` y se corrigen en un layout effect.
 - Cada CTA de WhatsApp lleva un mensaje distinto según su origen, para saber de
   dónde vino cada prospecto.
+
+### ⚠️ Nota de mantenimiento: color hardcodeado
+
+**Satori no resuelve custom properties de CSS.** Las tres rutas que generan
+imágenes con `ImageResponse` —`opengraph-image.tsx`, `icon.tsx` y
+`apple-icon.tsx`— llevan los hex escritos a mano y **no** se actualizan solas al
+cambiar `@theme`. Lo mismo con `themeColor` en `app/layout.tsx`.
+
+Si cambias la paleta, hay que tocar esos cuatro archivos a mano. Es justo lo que
+se olvida: la web queda con la paleta nueva y el link que mandas por WhatsApp
+sigue mostrando la vieja.
+
+Dos falsos positivos que **sí** deben quedarse hardcodeados: el `#000` de
+`GridBackground` es una máscara (significa "opaco", no es color), y los
+`rgba(255,255,255,…)` de `PhoneFrame` son reflejos de luz sobre un objeto, no
+color de marca.
+
+### Dirección visual: tinta sobre papel
+
+El eje del sitio **no** es frío/cálido sino **impreso vs levantado**:
+
+| | Lado QR | Lado TAPTAG |
+|---|---|---|
+| Superficie | `--color-flat` `#F1EEE9`, al ras | `--color-surface` `#FFFFFF`, elevado |
+| Sombra | ninguna | `--shadow-lift`, cálida y en dos capas |
+| Color | sin acento | achiote |
+
+El código QR es literalmente una hoja pegada a la mesa, así que se dibuja como
+papel sobre papel. TAPTAG se despega. **Esa diferencia de elevación es parte del
+argumento, no decoración** — si alguien "arregla" el QR dándole sombra, rompe la
+sección de Problema.
+
+Las ondas NFC son **tinta, no luz**: trazo fino con opacidad decreciente, sin
+resplandor. Un halo claro sobre fondo claro no se ve.
+
+La página va papel → papel → papel → **tinta**: el CTA final y el footer son la
+única zona oscura, con su propia zona de transición (`FinalCta.tsx`) para que el
+corte se lea como cambio de material. Sobre tinta el acento cambia a
+`--color-accent-on-ink`, porque el achiote oscuro desaparecería.
 
 ### Escala tipográfica
 

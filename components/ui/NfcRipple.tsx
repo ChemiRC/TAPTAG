@@ -51,7 +51,7 @@ export function NfcRipple({
         <span
           key={index}
           className={cn(
-            "border-accent/50 col-start-1 row-start-1 rounded-full border",
+            "border-accent/55 col-start-1 row-start-1 rounded-full border",
             isAnimated && "animate-signal-ring",
             ringClassName,
           )}

@@ -29,7 +29,7 @@ export function GridBackground({
     <div
       aria-hidden
       className={cn(
-        "pointer-events-none absolute inset-0 -z-10 opacity-60",
+        "pointer-events-none absolute inset-0 -z-10 opacity-[0.35]",
         className,
       )}
       style={{

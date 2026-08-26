@@ -86,8 +86,11 @@ export interface StaticQrVisualProps {
 }
 
 /**
- * El QR de la mesa: plano, opaco, sin brillo. La antítesis del sticker
- * luminoso del hero — aquí no hay acento de marca a propósito.
+ * El QR de la mesa: al ras del papel, sin sombra, sin acento.
+ *
+ * Ese es el eje del sitio: el QR es literalmente una hoja pegada a la mesa, así
+ * que se dibuja como papel impreso sobre papel. TAPTAG, en cambio, se despega
+ * con sombra y color. La diferencia de elevación ES el argumento.
  *
  * El patrón es decorativo y determinista; no codifica nada ni es escaneable.
  */
@@ -97,7 +100,7 @@ export function StaticQrVisual({ className }: StaticQrVisualProps) {
       aria-hidden
       className={cn("flex w-full justify-center select-none", className)}
     >
-      <div className="border-border bg-surface flex w-full max-w-[248px] rotate-[-2deg] flex-col items-center gap-4 rounded-card border p-6">
+      <div className="border-border bg-flat flex w-full max-w-[248px] rotate-[-2deg] flex-col items-center gap-4 rounded-chip border p-6">
         <QrPattern className="text-muted/45" />
 
         <p className="text-muted text-center type-label">

@@ -25,7 +25,7 @@ const BASE_CLASSES =
 
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
   primary:
-    "bg-gradient-brand text-bg font-semibold shadow-glow hover:shadow-glow-strong",
+    "bg-gradient-brand text-surface font-semibold shadow-glow hover:shadow-glow-strong",
   secondary:
     "border border-border bg-transparent text-text hover:border-accent/40 hover:bg-surface",
   ghost: "bg-transparent text-muted hover:bg-surface hover:text-text",

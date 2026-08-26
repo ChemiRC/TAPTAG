@@ -11,33 +11,33 @@ import {
 } from "@/lib/constants";
 
 const LINK_CLASSES =
-  "text-muted hover:text-text inline-flex items-center gap-2 text-sm transition-colors duration-300";
+  "text-bg/70 hover:text-bg inline-flex items-center gap-2 text-sm transition-colors duration-300";
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <Section as="footer" className="py-16 md:py-20">
+    <Section as="footer" className="bg-ink text-bg py-16 md:py-20">
       {/* Hairline con el gradiente de marca, desvanecido en los extremos. */}
       <div
         aria-hidden
-        className="bg-gradient-brand absolute inset-x-0 top-0 h-px opacity-50 [mask-image:linear-gradient(to_right,transparent,black_25%,black_75%,transparent)]"
+        className="bg-gradient-brand absolute inset-x-0 top-0 h-px opacity-60 [mask-image:linear-gradient(to_right,transparent,black_25%,black_75%,transparent)]"
       />
 
       <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr] md:gap-8">
         <div className="flex flex-col items-start gap-4">
           <Logo />
-          <p className="text-muted max-w-xs text-sm">
+          <p className="text-bg/70 max-w-xs text-sm">
             Cambia el QR impreso por un tap. Tu menú y tus reseñas, a un
             acercamiento de celular.
           </p>
-          <p className="text-muted text-sm">
+          <p className="text-bg/70 text-sm">
             Hecho en Guadalajara, Jalisco <span aria-hidden>🇲🇽</span>
           </p>
         </div>
 
         <nav aria-label="Navegación del pie de página">
-          <h2 className="font-display text-text mb-4 text-xs tracking-[0.2em] uppercase">
+          <h2 className="font-display text-bg mb-4 text-xs tracking-[0.2em] uppercase">
             Explora
           </h2>
           <ul className="flex flex-col gap-3">
@@ -52,7 +52,7 @@ export function Footer() {
         </nav>
 
         <div>
-          <h2 className="font-display text-text mb-4 text-xs tracking-[0.2em] uppercase">
+          <h2 className="font-display text-bg mb-4 text-xs tracking-[0.2em] uppercase">
             Contacto
           </h2>
           <ul className="flex flex-col gap-3">
@@ -74,18 +74,18 @@ export function Footer() {
                 </a>
               </li>
             )}
-            <li className="text-muted text-sm">{SITE.city}</li>
+            <li className="text-bg/70 text-sm">{SITE.city}</li>
           </ul>
         </div>
       </div>
 
-      <div className="border-border mt-14 flex flex-col gap-3 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-muted text-xs">
+      <div className="border-bg/15 mt-14 flex flex-col gap-3 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-bg/55 text-xs">
           © {year} {SITE.name}. Todos los derechos reservados.
         </p>
         <Link
           href="/aviso-de-privacidad"
-          className="text-muted hover:text-text text-xs transition-colors duration-300"
+          className="text-bg/55 hover:text-bg text-xs transition-colors duration-300"
         >
           Aviso de Privacidad
         </Link>

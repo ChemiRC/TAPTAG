@@ -2,23 +2,38 @@
 
 /* =========================================================================
    TAPTAG · Design System
-   Dark mode premium (OLED). Todo el sistema vive aquí y se consume vía
-   utilidades de Tailwind (bg-bg, text-muted, rounded-card, shadow-glow…).
+   Tinta sobre papel. Fondo calido, tinta calida, acento achiote.
+
+   El eje del sitio NO es frio/calido sino IMPRESO vs LEVANTADO: el codigo QR
+   es literalmente una hoja pegada a la mesa, asi que se dibuja al ras y sin
+   sombra; TAPTAG se despega del papel con sombra y color. Esa diferencia es
+   parte del argumento, no decoracion.
+
+   Todo el sistema vive aqui y se consume via utilidades de Tailwind
+   (bg-bg, text-muted, rounded-card, shadow-lift…).
    ========================================================================= */
 
 @theme {
-  /* ---- Paleta ---------------------------------------------------------- */
-  --color-bg: #0a0a0b;
-  --color-surface: #111114;
-  --color-surface-2: #17171b;
-  --color-border: #1f1f23;
-  --color-text: #ededed;
-  --color-muted: #8a8a8a;
-  /* Texto terciario. Es el gris mas oscuro que sigue pasando WCAG AA sobre el
-     fondo (4.74:1). Debajo de esto solo va decoracion aria-hidden. */
-  --color-dim: #7c7c7c;
-  --color-accent: #22d3ee;
-  --color-accent-2: #7c3aed;
+  /* ---- Paleta ----------------------------------------------------------
+     Ni el fondo ni la tinta son puros: blanco puro en un celular bajo la luz
+     de un restaurante es agresivo, y negro puro sobre blanco vibra. Los
+     contrastes verificados van anotados al lado. */
+  --color-bg: #fbf9f6; /* papel */
+  --color-surface: #ffffff; /* tarjeta levantada */
+  --color-surface-2: #f6f2ec; /* superficie intermedia */
+  /* Superficie inerte: el lado QR. Va al ras, sin sombra. */
+  --color-flat: #f1eee9;
+  --color-border: #e6e0d7;
+  --color-text: #1a1512; /* 17.23 sobre papel */
+  --color-muted: #6b6259; /*  5.68 */
+  /* Texto terciario. Sobre claro este escalon es el que primero se rompe:
+     el equivalente directo del gris oscuro daba 3.94 y fallaba AA. */
+  --color-dim: #6e655d; /*  5.43 */
+  --color-accent: #b3350f; /*  5.82 — achiote quemado */
+  --color-accent-2: #7a1710; /* 10.21 — guinda */
+  /* Para la seccion de cierre, que es la unica en tinta. */
+  --color-ink: #1a1512;
+  --color-accent-on-ink: #e8703a; /*  5.87 sobre tinta */
 
   /* ---- Tipografia ------------------------------------------------------
      La escala vive documentada en el README (seccion Convenciones). Cada
@@ -37,10 +52,18 @@
   --radius-card: 1rem; /* 16px  — tarjetas y paneles */
   --radius-panel: 1.75rem; /* 28px  — el marco del telefono */
 
-  /* ---- Sombras + glow del acento --------------------------------------- */
-  --shadow-glow: 0 0 0 1px #22d3ee29, 0 8px 32px -8px #22d3ee73;
-  --shadow-glow-strong: 0 0 0 1px #22d3ee3d, 0 12px 48px -8px #22d3ee99;
-  --shadow-elevated: 0 1px 0 0 #ffffff0a inset, 0 24px 64px -24px #000000;
+  /* ---- Sombras ---------------------------------------------------------
+     Sobre papel el resplandor no existe: lo que despega un objeto es la
+     sombra. Van en dos capas —una difusa amplia y una corta de contacto—
+     y tintadas en calido, porque una sombra gris sobre papel se ve sucia. */
+  --shadow-lift: 0 10px 24px -12px #2a1a1026, 0 2px 6px -2px #2a1a101f;
+  --shadow-lift-strong: 0 18px 40px -16px #2a1a1038, 0 4px 10px -3px #2a1a1029;
+  /* El boton primario: sombra del propio acento, no gris. */
+  --shadow-glow: 0 10px 24px -10px #7a171059, 0 2px 6px -2px #2a1a1026;
+  --shadow-glow-strong: 0 16px 34px -12px #7a171073, 0 4px 10px -3px #2a1a1033;
+  /* El telefono es un objeto oscuro sobre papel: necesita contacto real. */
+  --shadow-elevated: 0 1px 0 0 #ffffff99 inset, 0 40px 70px -30px #2a1a1073,
+    0 12px 24px -10px #2a1a1040, 0 3px 6px -2px #2a1a1026;
 
   /* ---- Easing / duraciones --------------------------------------------- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -154,7 +177,7 @@
     var(--color-accent),
     var(--color-accent-2)
   );
-  --gradient-brand-soft: linear-gradient(135deg, #22d3ee24, #7c3aed24);
+  --gradient-brand-soft: linear-gradient(135deg, #b3350f1f, #7a17101f);
   /* Alto del nav + aire. Lo consume scroll-padding-top. */
   --nav-offset: 5.5rem;
 
@@ -164,14 +187,18 @@
     var(--color-muted) 100%
   );
 
-  color-scheme: dark;
+  color-scheme: light;
 
   /* Escala de z-index del chrome. Documentada aqui para que ninguna seccion
      invente su propio valor:
        30  WhatsAppFAB
        40  Overlay del menu movil
        50  Navbar (queda por encima del overlay: logo y boton de cerrar)
-       60  NoiseOverlay (grano por encima de todo, sin capturar el puntero) */
+       60  NoiseOverlay (grano por encima de todo, sin capturar el puntero)
+
+     Nota: sobre papel el grano va en `multiply`, no en `soft-light`. Con
+     soft-light sobre claro se lee como suciedad; con multiply, como el grano
+     del papel. Ver components/ui/NoiseOverlay.tsx. */
 }
 
 @layer base {
@@ -217,7 +244,7 @@
   }
 
   ::selection {
-    background-color: #22d3ee47;
+    background-color: #b3350f2e;
     color: var(--color-text);
   }
 

@@ -18,7 +18,7 @@ const STROKE = {
 export function OneTimePaymentVisual() {
   return (
     <div className="flex flex-col items-start gap-4">
-      <span className="bg-gradient-brand text-bg rounded-pill font-display px-4 py-2 text-sm font-semibold">
+      <span className="bg-gradient-brand text-surface rounded-pill font-display px-4 py-2 text-sm font-semibold">
         Pago único
       </span>
 

@@ -80,7 +80,7 @@ export function Navbar() {
           <a
             href="#inicio"
             aria-label={`${SITE.name}, ir al inicio`}
-            className="rounded-pill -m-2 p-2"
+            className="text-text rounded-pill -m-2 p-2"
           >
             <Logo />
           </a>

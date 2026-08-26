@@ -32,10 +32,10 @@ export default async function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          backgroundColor: "#0A0A0B",
+          backgroundColor: "#FBF9F6",
           backgroundImage:
-            "radial-gradient(900px circle at 12% 8%, rgba(34,211,238,0.28), transparent 55%), radial-gradient(800px circle at 92% 88%, rgba(124,58,237,0.32), transparent 55%)",
-          color: "#EDEDED",
+            "radial-gradient(900px circle at 12% 8%, rgba(179,53,15,0.09), transparent 55%), radial-gradient(800px circle at 92% 88%, rgba(122,23,16,0.07), transparent 55%)",
+          color: "#1A1512",
           fontFamily: "Clash Display",
         }}
       >
@@ -63,7 +63,7 @@ export default async function OpengraphImage() {
           >
             Un tap. Y ya.
           </span>
-          <span style={{ fontSize: 34, color: "#8A8A8A", maxWidth: 900 }}>
+          <span style={{ fontSize: 34, color: "#6B6259", maxWidth: 900 }}>
             Stickers NFC premium para restaurantes. Adiós al código QR.
           </span>
         </div>
@@ -74,15 +74,15 @@ export default async function OpengraphImage() {
               display: "flex",
               padding: "12px 26px",
               borderRadius: 999,
-              backgroundImage: "linear-gradient(135deg, #22D3EE, #7C3AED)",
-              color: "#0A0A0B",
+              backgroundImage: "linear-gradient(135deg, #B3350F, #7A1710)",
+              color: "#FBF9F6",
               fontSize: 26,
               fontWeight: 700,
             }}
           >
             Cotizar por WhatsApp
           </span>
-          <span style={{ fontSize: 26, color: "#8A8A8A" }}>{SITE.city}</span>
+          <span style={{ fontSize: 26, color: "#6B6259" }}>{SITE.city}</span>
         </div>
       </div>
     ),
@@ -104,9 +104,9 @@ export default async function OpengraphImage() {
 function NfcArcs({ size: glyphSize }: { size: number }) {
   return (
     <svg width={glyphSize} height={glyphSize} viewBox="0 0 24 24" fill="none">
-      <path d="M8 8.5A4 4 0 0 1 8 15.5" stroke="#22D3EE" strokeWidth={2.4} strokeLinecap="round" />
-      <path d="M9.8 5.5A7.5 7.5 0 0 1 9.8 18.5" stroke="#22D3EE" strokeWidth={2.4} strokeLinecap="round" opacity={0.7} />
-      <path d="M11.5 2.5A11 11 0 0 1 11.5 21.5" stroke="#22D3EE" strokeWidth={2.4} strokeLinecap="round" opacity={0.4} />
+      <path d="M8 8.5A4 4 0 0 1 8 15.5" stroke="#B3350F" strokeWidth={2.4} strokeLinecap="round" />
+      <path d="M9.8 5.5A7.5 7.5 0 0 1 9.8 18.5" stroke="#B3350F" strokeWidth={2.4} strokeLinecap="round" opacity={0.7} />
+      <path d="M11.5 2.5A11 11 0 0 1 11.5 21.5" stroke="#B3350F" strokeWidth={2.4} strokeLinecap="round" opacity={0.4} />
     </svg>
   );
 }

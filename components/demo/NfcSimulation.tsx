@@ -217,7 +217,7 @@ export function NfcSimulation({
               ref={flashRef}
               aria-hidden
               style={{ opacity: 0 }}
-              className="border-accent pointer-events-none absolute inset-0 -z-10 rounded-full border-2"
+              className="border-accent pointer-events-none absolute inset-0 -z-10 rounded-full border"
             />
           </button>
 

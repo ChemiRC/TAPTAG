@@ -165,7 +165,7 @@ export function BentoCell({
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
         className={cn(
-          "group border-border bg-surface/40 relative flex h-full flex-col overflow-hidden rounded-card border p-6 will-change-transform sm:p-7",
+          "group border-border bg-surface shadow-lift relative flex h-full flex-col overflow-hidden rounded-card border p-6 will-change-transform sm:p-7",
           featured && "border-transparent",
         )}
       >

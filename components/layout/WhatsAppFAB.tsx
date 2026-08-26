@@ -22,6 +22,10 @@ const LABEL = "¿Dudas? Escríbenos";
  * "expansión" no toca layout. En touch nunca hay hover y queda solo el ícono.
  *
  * z-30: por debajo del header (z-50), que es donde vive el overlay del menú.
+ * Sobre papel la onda deja de ser un disco de luz que se expande y pasa a ser
+ * un anillo de tinta: trazo fino, sin relleno. Un disco claro sobre fondo claro
+ * no se ve.
+ *
  * El anillo de pulso va antes que el enlace en el DOM: ambos son elementos
  * posicionados sin z-index, así que el orden del documento basta para dejar la
  * onda detrás del botón sin depender de un stacking context frágil.
@@ -54,7 +58,7 @@ export function WhatsAppFAB() {
           {!prefersReducedMotion && (
             <span
               aria-hidden
-              className="bg-accent rounded-pill animate-signal-ring absolute inset-0"
+              className="border-accent/45 rounded-pill animate-signal-ring absolute inset-0 border"
             />
           )}
 
@@ -70,7 +74,7 @@ export function WhatsAppFAB() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${LABEL} por WhatsApp`}
-            className="bg-gradient-brand text-bg shadow-glow hover:shadow-glow-strong rounded-pill ease-out-expo relative flex size-14 items-center justify-center transition-shadow duration-300"
+            className="bg-gradient-brand text-surface shadow-glow hover:shadow-glow-strong rounded-pill ease-out-expo relative flex size-14 items-center justify-center transition-shadow duration-300"
           >
             <WhatsAppIcon className="size-7" />
           </a>

@@ -13,7 +13,7 @@ export function Logo({ className, markOnly = false }: LogoProps) {
   return (
     <span
       className={cn(
-        "text-text inline-flex items-center gap-1.5 leading-none",
+        "inline-flex items-center gap-1.5 leading-none",
         className,
       )}
     >

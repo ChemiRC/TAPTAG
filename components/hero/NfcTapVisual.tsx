@@ -258,7 +258,7 @@ function Sticker({ ref, flashRef }: StickerProps) {
         <span
           ref={flashRef}
           aria-hidden
-          className="border-accent col-start-1 row-start-1 size-[130px] rounded-full border-2 opacity-0"
+          className="border-accent col-start-1 row-start-1 size-[130px] rounded-full border opacity-0"
         />
 
         <div
