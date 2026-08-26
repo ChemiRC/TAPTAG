@@ -35,10 +35,13 @@ contratar.
 
 ## Modelo comercial
 
-Se contrata una vez, sin mensualidades ni renovación. Tres niveles de servicio
-según el alcance: Prueba (3 puntos de contacto), Restaurante (hasta 12 puntos,
-personalizado, con reposición incluida) y Cadena (a medida, para varias
-sucursales). Cotización y contacto por WhatsApp.
+Se contrata una vez, sin mensualidades ni renovación. El primer año incluye
+cambios de destino ilimitados y reposición de cualquier punto que deje de
+servir; pasado el año los cambios se cotizan aparte.
+
+El costo depende del alcance: cuántos puntos de contacto cubre el local y a
+cuántos destinos distintos llevan. No hay lista de precios publicada — se
+cotiza caso por caso, por WhatsApp, el mismo día.
 
 ## Zona de servicio
 

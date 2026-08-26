@@ -1,84 +1,3 @@
-import type { WhatsAppMessageKey } from "@/lib/constants";
-
-/* ==========================================================================
- * PLANES
- * ========================================================================== */
-
-export interface Plan {
-  id: string;
-  name: string;
-  /** Precio ya formateado. `null` cuando el plan se cotiza a medida. */
-  price: string | null;
-  /** Etiqueta que acompaña al precio. */
-  priceNote: string;
-  tagline: string;
-  features: readonly string[];
-  /** Origen del mensaje de WhatsApp, para saber qué plan disparó el contacto. */
-  messageKey: WhatsAppMessageKey;
-  featured?: boolean;
-  /** Distintivo del plan destacado. */
-  badge?: string;
-}
-
-/**
- * TODO: precios reales — los tres montos están como `$XXX` a propósito. Son
- * placeholders imposibles de publicar por accidente: el dueño del negocio aún
- * tiene que definirlos.
- *
- * El acompañamiento incluido dura el primer año: cambios ilimitados y
- * reposición sin costo. Pasado el año los cambios se cotizan aparte. Se dice
- * de frente en los tres planes, en la nota de la sección y en la FAQ — dicho
- * así suena a garantía; escondido en una nota al pie sonaría a trampa.
- */
-export const PLANS: readonly Plan[] = [
-  {
-    id: "prueba",
-    name: "Prueba",
-    price: "$XXX",
-    priceNote: "MXN · pago único",
-    tagline: "Para ver cómo funciona en tu negocio",
-    features: [
-      "Instalamos 3 puntos de contacto en tu local",
-      "Configuramos el destino que elijas: menú o reseñas",
-      "Un año de cambios de destino, los hacemos nosotros",
-      "Instalación en persona en Guadalajara",
-    ],
-    messageKey: "planPrueba",
-  },
-  {
-    id: "restaurante",
-    name: "Restaurante",
-    price: "$XXX",
-    priceNote: "MXN · pago único",
-    tagline: "Para cubrir todo tu local",
-    features: [
-      "Instalamos hasta 12 puntos: mesas, barra y terminal",
-      "Revisamos contigo dónde conviene colocarlos",
-      "Diseño con tu logo y tus colores",
-      "Menú y reseñas en paralelo, en puntos distintos",
-      "Un año de cambios ilimitados, los hacemos nosotros",
-      "Un año de reposición: si un punto deja de servir, lo cambiamos",
-    ],
-    messageKey: "planRestaurante",
-    featured: true,
-    badge: "Más elegido",
-  },
-  {
-    id: "cadena",
-    name: "Cadena",
-    price: null,
-    priceNote: "Cotización a medida",
-    tagline: "Para varias sucursales",
-    features: [
-      "Alcance a medida, sucursal por sucursal",
-      "Displays además de los puntos en mesa",
-      "Un destino distinto por sucursal",
-      "Un año de acompañamiento, con contacto directo por WhatsApp",
-    ],
-    messageKey: "planCadena",
-  },
-] as const;
-
 /* ==========================================================================
  * TESTIMONIOS
  * ========================================================================== */
@@ -206,7 +125,7 @@ export const FAQS: readonly Faq[] = [
     id: "mensualidad",
     question: "¿Hay mensualidad o renovación?",
     answer:
-      "No. El servicio se contrata una vez y no hay cargos recurrentes ni renovación. El primer año de cambios y reposición va incluido; pasado ese año solo pagas los cambios que pidas.",
+      "No. El servicio se contrata una vez y no hay cargos recurrentes ni renovación. El primer año de cambios y reposición va incluido; pasado ese año solo pagas los cambios que pidas. El costo inicial depende del alcance, así que lo cotizamos caso por caso.",
   },
   {
     id: "cobertura",

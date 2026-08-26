@@ -16,7 +16,6 @@ export function StructuredData() {
     description: SITE.description,
     url: SITE.url,
     telephone: `+${WHATSAPP_NUMBER}`,
-    priceRange: "$$",
     areaServed: SITE.serviceArea.map((name) => ({ "@type": "City", name })),
     address: {
       "@type": "PostalAddress",

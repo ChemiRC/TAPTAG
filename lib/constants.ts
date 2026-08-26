@@ -172,9 +172,7 @@ export const WHATSAPP_MESSAGES = {
   nav: `Hola ${SITE.name}, quiero cotizar el sistema NFC para mi restaurante 🙌`,
   fab: `Hola ${SITE.name}, tengo una duda sobre cómo funciona el servicio 🙌`,
   footer: `Hola ${SITE.name}, quiero información sobre el servicio para mi restaurante.`,
-  planPrueba: `Hola ${SITE.name}, me interesa el plan Prueba para mi negocio 🙌`,
-  planRestaurante: `Hola ${SITE.name}, me interesa el plan Restaurante para mi negocio 🙌`,
-  planCadena: `Hola ${SITE.name}, tengo varias sucursales y quiero una cotización a medida 🙌`,
+  cotizacion: `Hola ${SITE.name}, quiero cotizar el sistema para mi local. ¿Lo vemos? 🙌`,
   faq: `Hola ${SITE.name}, tengo una duda que no vi en las preguntas frecuentes 🙌`,
   ctaFinal: `Hola ${SITE.name}, quiero que un tap me traiga más reseñas. ¿Me cotizan? 🙌`,
 } as const;
@@ -187,7 +185,7 @@ export type WhatsAppMessageKey = keyof typeof WHATSAPP_MESSAGES;
  */
 export const NAV_LINKS = [
   { href: "#como-funciona", label: "Cómo funciona" },
-  { href: "#planes", label: "Planes" },
+  { href: "#cotizacion", label: "Cotización" },
   { href: "#faq", label: "Preguntas" },
 ] as const;
 

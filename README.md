@@ -14,7 +14,6 @@ QR comprimido a 3 segundos, el tap en menos de medio.
 | Qué | Dónde | Estado |
 |---|---|---|
 | **Número de WhatsApp** | `NEXT_PUBLIC_WHATSAPP_NUMBER` | `52XXXXXXXXXX`. Los 8 CTA arman bien la URL pero apuntan a un número inexistente. **Bloqueante.** |
-| **Precios** | `lib/content.ts` → `PLANS` | `$XXX` en Prueba y Restaurante. **Bloqueante.** |
 | **Datos legales** | `app/aviso-de-privacidad/page.tsx` | Razón social, domicilio fiscal y fecha están como `[...]`. El texto es un **borrador base, no asesoría legal**. **Bloqueante.** |
 | **Testimonios** | `lib/content.ts` → `TESTIMONIALS` | De relleno. La sección **no se renderiza** mientras lo sean (ver abajo). |
 | **Dominio** | `NEXT_PUBLIC_SITE_URL` | Por defecto `https://taptag.mx`, que es una suposición. |
@@ -55,15 +54,15 @@ npx tsc --noEmit  # typecheck
 | `app/layout.tsx` | Metadata, fuentes, chrome persistente y JSON-LD. |
 | `app/opengraph-image.tsx` · `icon.tsx` · `apple-icon.tsx` | Imágenes generadas en build con `ImageResponse`. Sin assets externos. |
 | `app/sitemap.ts` · `app/robots.ts` | Rutas reales, derivadas de `SITE.url`. |
-| `components/sections/` | Las ocho secciones: `Problem`, `Demo`, `HowItWorks`, `Features`, `Pricing`, `Testimonials`, `Faq`, `FinalCta`. |
+| `components/sections/` | Las ocho secciones: `Problem`, `Demo`, `HowItWorks`, `Features`, `Quote`, `Testimonials`, `Faq`, `FinalCta`. |
 | `components/hero/` | Hero: timeline GSAP + SplitText, `NfcTapVisual`, fondo y scroll indicator. |
 | `components/demo/` | Demo interactiva y las piezas compartidas `PhoneFrame` / `DestinationScreen`. |
-| `components/problem/` · `how-it-works/` · `features/` · `pricing/` · `faq/` | Piezas de cada sección. |
+| `components/problem/` · `how-it-works/` · `features/` · `faq/` | Piezas de cada sección. |
 | `components/layout/` | Chrome persistente: `Navbar`, `MobileMenu`, `Footer`, `WhatsAppFAB`, `Logo`. |
 | `components/ui/` | Primitivos: `Button`, `Section`, `Reveal`, `CountUp`, `NfcRipple`, `MeshGradient`, `GridBackground`, `NoiseOverlay`. |
 | `components/seo/` | `StructuredData`: JSON-LD de `LocalBusiness` y `FAQPage`. |
 | `lib/constants.ts` | `WHATSAPP_NUMBER`, `buildWhatsAppUrl`, `SITE`, `WHATSAPP_MESSAGES`, `NAV_LINKS`. |
-| `lib/content.ts` | `PLANS`, `FEATURES`, `TESTIMONIALS`, `FAQS` y la guarda de testimonios. Todo el copy de secciones vive aquí. |
+| `lib/content.ts` | `FEATURES`, `TESTIMONIALS`, `FAQS` y la guarda de testimonios. Todo el copy de secciones vive aquí. |
 | `lib/hooks/` | `usePrefersReducedMotion`, `useIsTouchDevice`, `useScrollLock`, `useFocusTrap`. |
 | `assets/fonts/` | TTF de Clash Display, solo para generar la imagen OG en build. No se sirve. |
 | `public/fonts/` | Clash Display en woff2, servido por `next/font/local`. |
