@@ -122,7 +122,7 @@ export function ComparisonTable({ className }: ComparisonTableProps) {
           role="row"
           className={cn(
             ROW_GRID,
-            "border-border text-muted hidden border-b pb-3 text-[0.6875rem] tracking-[0.18em] uppercase md:grid",
+            "border-border text-muted hidden border-b pb-3 type-eyebrow md:grid",
           )}
         >
           <span role="columnheader" />
@@ -151,14 +151,14 @@ export function ComparisonTable({ className }: ComparisonTableProps) {
             </span>
 
             <span role="cell" className="text-muted flex flex-col gap-1">
-              <span className="text-dim text-[0.625rem] tracking-[0.16em] uppercase md:hidden">
+              <span className="text-dim type-label md:hidden">
                 QR
               </span>
               <span className="text-sm md:text-base">{row.qr}</span>
             </span>
 
             <span role="cell" className="text-text flex flex-col gap-1">
-              <span className="text-accent/70 text-[0.625rem] tracking-[0.16em] uppercase md:hidden">
+              <span className="text-accent/70 type-label md:hidden">
                 TAPTAG
               </span>
               <span className="text-sm font-medium md:text-base">

@@ -36,7 +36,7 @@ export function DestinationScreen({ className }: DestinationScreenProps) {
           <div
             key={item.name}
             data-menu-row
-            className="border-border/70 bg-surface/60 flex items-center justify-between rounded-lg border px-2.5 py-2"
+            className="border-border/70 bg-surface/60 flex items-center justify-between rounded-chip border px-2.5 py-2"
           >
             <span className="text-text text-[0.5rem]">{item.name}</span>
             <span className="text-accent text-[0.5rem] font-medium">

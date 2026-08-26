@@ -20,16 +20,22 @@
   --color-accent: #22d3ee;
   --color-accent-2: #7c3aed;
 
-  /* ---- Tipografía ------------------------------------------------------ */
+  /* ---- Tipografia ------------------------------------------------------
+     La escala vive documentada en el README (seccion Convenciones). Cada
+     tamano tiene UN tracking y UNA interlinea; si hace falta otra variante,
+     se agrega al sistema, no al componente. */
   --font-display: var(--font-clash-display), "Clash Display", ui-sans-serif,
     system-ui, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
 
-  /* ---- Radios ---------------------------------------------------------- */
+  /* ---- Radios ----------------------------------------------------------
+     Cuatro, y ninguno mas. La auditoria encontro diez valores distintos en la
+     pagina: cada radio suelto es una decision que nadie tomo. */
   --radius-pill: 9999px;
-  --radius-card: 1.25rem;
-  --radius-panel: 1.75rem;
+  --radius-chip: 0.75rem; /* 12px  — badges, chips, celdas pequenas */
+  --radius-card: 1rem; /* 16px  — tarjetas y paneles */
+  --radius-panel: 1.75rem; /* 28px  — el marco del telefono */
 
   /* ---- Sombras + glow del acento --------------------------------------- */
   --shadow-glow: 0 0 0 1px #22d3ee29, 0 8px 32px -8px #22d3ee73;
@@ -218,6 +224,78 @@
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Roles tipograficos. Antes cada seccion repetia la combinacion a mano y
+     derivaron: mismo tamano con dos trackings, mismo tamano con dos
+     interlineas. Ahora hay un nombre por rol. */
+
+  /* Antetitulo de seccion: 11px, versalitas, tracking amplio. */
+  .type-eyebrow {
+    font-size: 0.6875rem;
+    line-height: 1.5;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* Titular de seccion. Un solo tamano para las ocho. */
+  .type-section-title {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  @media (width >= 40rem) {
+    .type-section-title {
+      font-size: 3rem;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .type-section-title {
+      font-size: 3.75rem;
+    }
+  }
+
+  /* Titulo de tarjeta / paso. Antes convivian con y sin tracking. */
+  .type-card-title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    line-height: 1.55;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  /* Etiqueta versalita chica. Antes habia cinco trackings distintos entre
+     0.14em y 0.2em para el mismo rol. */
+  .type-label {
+    font-size: 0.625rem;
+    line-height: 1.5;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* Bajada de seccion. */
+  .type-lead {
+    font-size: 1.125rem;
+    line-height: 1.55;
+    letter-spacing: normal;
+  }
+
+  /* Cuerpo largo: parrafos y listas. Una sola interlinea. */
+  .type-body {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  @media (width >= 40rem) {
+    .type-body {
+      font-size: 1rem;
+    }
   }
 }
 

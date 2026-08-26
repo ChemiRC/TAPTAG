@@ -5,8 +5,8 @@ import { useState } from "react";
 import { ComparisonTable } from "@/components/demo/ComparisonTable";
 import { NfcSimulation } from "@/components/demo/NfcSimulation";
 import { QrSimulation } from "@/components/demo/QrSimulation";
-import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { SectionIntro } from "@/components/ui/SectionIntro";
 
 /**
  * El "Solve" del PAS y la traducción literal del pitch presencial: al dueño del
@@ -21,20 +21,16 @@ export function Demo() {
 
   return (
     <Section id="demo" className="border-border/60 border-t">
-      <Reveal className="max-w-2xl">
-        <p className="text-muted text-[0.6875rem] tracking-[0.2em] uppercase">
-          La diferencia
-        </p>
-
-        <h2 className="font-display mt-5 text-4xl leading-[1.05] font-semibold tracking-[-0.02em] sm:text-5xl lg:text-6xl">
-          Pruébalo tú mismo.
-        </h2>
-
-        <p className="text-muted mt-5 text-lg">
-          ¿No lo probaste con tus manos? Pruébalo aquí. Primero el QR, luego el
-          tap: la diferencia se siente sola.
-        </p>
-      </Reveal>
+      <SectionIntro
+        eyebrow="La diferencia"
+        pace="viva"
+        title="Pruébalo tú mismo."
+        lead={
+          <>
+            ¿No lo probaste con tus manos? Pruébalo aquí. Primero el QR, luego el tap: la diferencia se siente sola.
+          </>
+        }
+      />
 
       <div className="mt-14 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-10 lg:mt-16 lg:gap-16">
         <QrSimulation resetToken={resetToken} />

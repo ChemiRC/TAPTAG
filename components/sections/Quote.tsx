@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { SectionIntro } from "@/components/ui/SectionIntro";
 import { WHATSAPP_MESSAGES, buildWhatsAppUrl } from "@/lib/constants";
 
 /**
@@ -17,21 +18,14 @@ import { WHATSAPP_MESSAGES, buildWhatsAppUrl } from "@/lib/constants";
 export function Quote() {
   return (
     <Section id="cotizacion" className="border-border/60 border-t">
-      <Reveal className="mx-auto flex max-w-xl flex-col items-center text-center">
-        <p className="text-muted text-[0.6875rem] tracking-[0.2em] uppercase">
-          Cotización
-        </p>
+      <SectionIntro
+        eyebrow="Cotización"
+        align="center"
+        title="Cada local es distinto."
+        lead="El costo depende de cuántas mesas quieras cubrir y de a dónde quieras llevar a tus clientes. Escríbenos, lo vemos juntos y te damos un número el mismo día."
+      />
 
-        <h2 className="font-display mt-5 text-4xl leading-[1.05] font-semibold tracking-[-0.02em] sm:text-5xl">
-          Cada local es distinto.
-        </h2>
-
-        <p className="text-muted mt-5 text-lg">
-          El costo depende de cuántas mesas quieras cubrir y de a dónde quieras
-          llevar a tus clientes. Escríbenos, lo vemos juntos y te damos un
-          número el mismo día.
-        </p>
-
+      <Reveal delay={0.27} className="flex flex-col items-center text-center">
         <Button
           size="lg"
           href={buildWhatsAppUrl(WHATSAPP_MESSAGES.cotizacion)}

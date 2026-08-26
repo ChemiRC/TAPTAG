@@ -1,5 +1,5 @@
-import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { SectionIntro } from "@/components/ui/SectionIntro";
 import { TESTIMONIALS, hasPublishableTestimonials } from "@/lib/content";
 import type { Testimonial } from "@/lib/content";
 import { cn } from "@/lib/utils";
@@ -33,7 +33,7 @@ export function Testimonials() {
 
     return (
       <Section id="testimonios" className="border-border/60 border-t">
-        <p className="border-accent/40 bg-surface text-muted rounded-xl border border-dashed p-5 text-sm">
+        <p className="border-accent/40 bg-surface text-muted rounded-chip border border-dashed p-5 text-sm">
           <span className="text-text font-medium">
             Sección de testimonios suprimida.
           </span>{" "}
@@ -47,15 +47,11 @@ export function Testimonials() {
 
   return (
     <Section id="testimonios" className="border-border/60 border-t">
-      <Reveal className="max-w-2xl">
-        <p className="text-muted text-[0.6875rem] tracking-[0.2em] uppercase">
-          Lo que dicen
-        </p>
-
-        <h2 className="font-display mt-5 text-4xl leading-[1.05] font-semibold tracking-[-0.02em] sm:text-5xl lg:text-6xl">
-          Restaurantes que ya cambiaron el QR.
-        </h2>
-      </Reveal>
+      <SectionIntro
+        eyebrow="Lo que dicen"
+        pace="normal"
+        title="Restaurantes que ya cambiaron el QR."
+      />
 
       {/*
         En móvil es un carril con scroll-snap nativo. No lleva
@@ -81,7 +77,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <li
       data-testimonial
-      className="border-border bg-surface/30 flex w-[85vw] max-w-sm shrink-0 snap-center flex-col rounded-2xl border p-7 md:w-auto md:max-w-none md:shrink"
+      className="border-border bg-surface/30 flex w-[85vw] max-w-sm shrink-0 snap-center flex-col rounded-card border p-7 md:w-auto md:max-w-none md:shrink"
     >
       <blockquote className="text-text flex-1 text-base leading-relaxed">
         “{testimonial.quote}”

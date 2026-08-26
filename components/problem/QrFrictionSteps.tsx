@@ -149,7 +149,7 @@ export function QrFrictionSteps({ className }: QrFrictionStepsProps) {
       </noscript>
 
       <div className="border-border mb-6 flex items-baseline justify-between border-b pb-3">
-        <span className="text-muted text-[0.6875rem] tracking-[0.18em] uppercase">
+        <span className="text-muted type-eyebrow">
           Lo que le pides a tu cliente
         </span>
         <span className="text-dim font-display text-sm tabular-nums">

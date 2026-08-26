@@ -97,10 +97,10 @@ export function StaticQrVisual({ className }: StaticQrVisualProps) {
       aria-hidden
       className={cn("flex w-full justify-center select-none", className)}
     >
-      <div className="border-border bg-surface flex w-full max-w-[248px] rotate-[-2deg] flex-col items-center gap-4 rounded-2xl border p-6">
+      <div className="border-border bg-surface flex w-full max-w-[248px] rotate-[-2deg] flex-col items-center gap-4 rounded-card border p-6">
         <QrPattern className="text-muted/45" />
 
-        <p className="text-muted text-center text-[0.5625rem] tracking-[0.18em] uppercase">
+        <p className="text-muted text-center type-label">
           Escanea para ver el menú
         </p>
       </div>

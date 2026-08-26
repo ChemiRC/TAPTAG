@@ -9,11 +9,11 @@ export function Faq() {
     <Section id="faq" className="border-border/60 border-t">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
-          <p className="text-muted text-[0.6875rem] tracking-[0.2em] uppercase">
+          <p className="text-muted type-eyebrow">
             Preguntas
           </p>
 
-          <h2 className="font-display mt-5 text-4xl leading-[1.05] font-semibold tracking-[-0.02em] sm:text-5xl">
+          <h2 className="type-section-title mt-5">
             Lo que nos preguntan siempre.
           </h2>
 
@@ -23,7 +23,7 @@ export function Faq() {
               href={buildWhatsAppUrl(WHATSAPP_MESSAGES.faq)}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent hover:text-text underline underline-offset-4 transition-colors duration-300"
+              className="text-accent hover:text-text decoration-accent/50 underline underline-offset-4 transition-colors duration-300 hover:decoration-accent"
             >
               Escríbenos y te contestamos hoy mismo.
             </a>

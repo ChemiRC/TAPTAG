@@ -137,7 +137,7 @@ export function Hero() {
           <p
             data-hero="badge"
             style={{ opacity: 0 }}
-            className="border-border text-muted rounded-pill flex items-center gap-2 border px-3.5 py-1.5 text-[0.6875rem] tracking-[0.14em] uppercase"
+            className="border-border text-muted rounded-pill flex items-center gap-2 border px-3.5 py-1.5 type-eyebrow"
           >
             <span
               aria-hidden
@@ -177,13 +177,18 @@ export function Hero() {
               Cotizar por WhatsApp
             </Button>
 
+            {/*
+              Ghost y sin ancho completo: en móvil los dos botones a la misma
+              anchura y con el mismo peso competían de tú a tú, y el objetivo de
+              conversión es uno solo.
+            */}
             <Button
               data-hero="cta"
               style={{ opacity: 0 }}
-              variant="secondary"
+              variant="ghost"
               size="lg"
               href={DEMO_ANCHOR}
-              className="w-full sm:w-auto"
+              className="self-center sm:self-auto"
             >
               Ver cómo funciona
             </Button>
@@ -194,12 +199,19 @@ export function Hero() {
             style={{ opacity: 0 }}
             className="text-muted mt-7 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs"
           >
+            {/*
+              El separador va DETRÁS del punto, no delante: cuando la lista se
+              parte, un bullet abriendo el renglón se lee como error.
+            */}
             {TRUST_POINTS.map((point, index) => (
-              <li key={point} className="flex items-center gap-3">
-                {index > 0 && (
+              <li
+                key={point}
+                className="flex items-center gap-3 whitespace-nowrap"
+              >
+                {point}
+                {index < TRUST_POINTS.length - 1 && (
                   <span aria-hidden className="bg-border size-1 rounded-full" />
                 )}
-                {point}
               </li>
             ))}
           </ul>
@@ -208,7 +220,7 @@ export function Hero() {
         <div
           data-hero="visual"
           style={{ opacity: 0 }}
-          className="mt-2 justify-self-center lg:mt-0 lg:justify-self-end"
+          className="-mt-4 sm:mt-2 justify-self-center lg:mt-0 lg:justify-self-end"
         >
           <NfcTapVisual />
         </div>

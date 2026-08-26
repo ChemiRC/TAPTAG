@@ -3,6 +3,7 @@ import { StaticQrVisual } from "@/components/problem/StaticQrVisual";
 import { CountUp } from "@/components/ui/CountUp";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { SectionIntro } from "@/components/ui/SectionIntro";
 
 /** Ancla de la sección siguiente: la demo QR vs NFC. */
 const DEMO_ANCHOR = "#demo";
@@ -18,19 +19,16 @@ const DEMO_ANCHOR = "#demo";
 export function Problem() {
   return (
     <Section id="problema" className="border-border/60 border-t">
-      <Reveal className="max-w-2xl">
-        <p className="text-muted text-[0.6875rem] tracking-[0.2em] uppercase">
-          El problema
-        </p>
-
-        <h2 className="font-display mt-5 text-4xl leading-[1.05] font-semibold tracking-[-0.02em] sm:text-5xl lg:text-6xl">
-          Tus clientes felices se van sin dejar reseña.
-        </h2>
-
-        <p className="text-muted mt-5 text-lg">
-          No es que no quieran. Es que se los pusiste difícil.
-        </p>
-      </Reveal>
+      <SectionIntro
+        eyebrow="El problema"
+        pace="lenta"
+        title="Tus clientes felices se van sin dejar reseña."
+        lead={
+          <>
+            No es que no quieran. Es que se los pusiste difícil.
+          </>
+        }
+      />
 
       <div className="mt-16 grid grid-cols-1 items-start gap-12 lg:mt-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
         <QrFrictionSteps />
@@ -52,7 +50,7 @@ export function Problem() {
 
       <Reveal
         delay={0.1}
-        className="border-border bg-surface/40 mt-12 flex max-w-3xl flex-col gap-6 rounded-2xl border p-8 sm:flex-row sm:items-center sm:gap-10 sm:p-10"
+        className="border-border bg-surface/40 mt-12 flex max-w-3xl flex-col gap-6 rounded-card border p-8 sm:flex-row sm:items-center sm:gap-10 sm:p-10"
       >
         <p className="font-display text-text shrink-0 text-6xl leading-none font-semibold tabular-nums sm:text-7xl">
           <CountUp to={60} duration={2.2} suffix="" />
@@ -61,7 +59,7 @@ export function Problem() {
           </span>
         </p>
 
-        <p className="text-muted max-w-md text-sm leading-relaxed sm:text-base">
+        <p className="text-muted max-w-md type-body">
           Es la ventana real que tienes para pedir una reseña después de una
           buena comida. Con el QR, se te va en el intento.
         </p>

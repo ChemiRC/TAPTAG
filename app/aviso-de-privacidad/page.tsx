@@ -117,7 +117,7 @@ export default function AvisoDePrivacidad() {
               href={CONTACTO_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent hover:text-text underline underline-offset-4 transition-colors duration-300"
+              className="text-accent hover:text-text decoration-accent/50 underline underline-offset-4 transition-colors duration-300 hover:decoration-accent"
             >
               WhatsApp
             </a>
@@ -126,7 +126,7 @@ export default function AvisoDePrivacidad() {
                 {" "}o al correo{" "}
                 <a
                   href={`mailto:${SITE.email}`}
-                  className="text-accent hover:text-text underline underline-offset-4 transition-colors duration-300"
+                  className="text-accent hover:text-text decoration-accent/50 underline underline-offset-4 transition-colors duration-300 hover:decoration-accent"
                 >
                   {SITE.email}
                 </a>

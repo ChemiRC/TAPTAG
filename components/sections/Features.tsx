@@ -16,8 +16,8 @@ import {
   OneTimePaymentVisual,
   ReprogramVisual,
 } from "@/components/features/FeatureVisuals";
-import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { SectionIntro } from "@/components/ui/SectionIntro";
 import { FEATURES } from "@/lib/content";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -88,20 +88,16 @@ export function Features() {
 
   return (
     <Section id="beneficios" className="border-border/60 border-t">
-      <Reveal className="max-w-2xl">
-        <p className="text-muted text-[0.6875rem] tracking-[0.2em] uppercase">
-          Por qué TAPTAG
-        </p>
-
-        <h2 className="font-display mt-5 text-4xl leading-[1.05] font-semibold tracking-[-0.02em] sm:text-5xl lg:text-6xl">
-          Lo que te vas a preguntar.
-        </h2>
-
-        <p className="text-muted mt-5 text-lg">
-          Las mismas dudas que nos plantean en cada visita, contestadas antes de
-          que las tengas que hacer.
-        </p>
-      </Reveal>
+      <SectionIntro
+        eyebrow="Por qué TAPTAG"
+        pace="normal"
+        title="Lo que te vas a preguntar."
+        lead={
+          <>
+            Las mismas dudas que nos plantean en cada visita, contestadas antes de que las tengas que hacer.
+          </>
+        }
+      />
 
       <div
         ref={gridRef}

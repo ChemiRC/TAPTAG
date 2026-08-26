@@ -165,7 +165,7 @@ export function BentoCell({
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
         className={cn(
-          "group border-border bg-surface/40 relative flex h-full flex-col overflow-hidden rounded-2xl border p-6 will-change-transform sm:p-7",
+          "group border-border bg-surface/40 relative flex h-full flex-col overflow-hidden rounded-card border p-6 will-change-transform sm:p-7",
           featured && "border-transparent",
         )}
       >
@@ -173,7 +173,7 @@ export function BentoCell({
           // Borde con gradiente: un fondo de marca al que le recortamos el centro.
           <span
             aria-hidden
-            className="bg-gradient-brand pointer-events-none absolute inset-0 rounded-2xl opacity-40 [mask:linear-gradient(#000_0_0)_content-box_exclude,linear-gradient(#000_0_0)] p-px"
+            className="bg-gradient-brand pointer-events-none absolute inset-0 rounded-card opacity-40 [mask:linear-gradient(#000_0_0)_content-box_exclude,linear-gradient(#000_0_0)] p-px"
           />
         )}
 
@@ -198,7 +198,7 @@ export function BentoCell({
         >
           {visual && <div className={cn(!featured && "mb-6")}>{visual}</div>}
 
-          <h3 className="font-display text-text text-lg font-semibold">
+          <h3 className="type-card-title text-text">
             {title}
           </h3>
           <p className="text-muted mt-2 text-sm leading-relaxed">

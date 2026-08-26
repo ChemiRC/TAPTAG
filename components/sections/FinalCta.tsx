@@ -30,7 +30,7 @@ export function FinalCta() {
 
       <div className="relative flex flex-col items-center text-center">
         <Reveal>
-          <h2 className="font-display mx-auto max-w-3xl text-4xl leading-[1.03] font-semibold tracking-[-0.025em] sm:text-5xl lg:text-6xl">
+          <h2 className="type-section-title mx-auto max-w-3xl">
             ¿Listo para que un tap te traiga más reseñas?
           </h2>
         </Reveal>

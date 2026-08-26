@@ -34,12 +34,12 @@ export function ScrollIndicator({
     <div
       data-hero="hint"
       style={{ opacity: 0 }}
-      className="absolute inset-x-0 bottom-6 hidden justify-center md:flex"
+      className="absolute inset-x-0 bottom-14 hidden justify-center md:flex"
     >
       <motion.a
         href={href}
         style={{ opacity, pointerEvents }}
-        className="text-muted hover:text-text flex flex-col items-center gap-3 text-[0.6875rem] tracking-[0.2em] uppercase transition-colors duration-300"
+        className="text-muted hover:text-text type-eyebrow ease-out-expo flex flex-col items-center gap-3 transition-[color,transform] duration-500 hover:translate-y-1"
       >
         {label}
         <span

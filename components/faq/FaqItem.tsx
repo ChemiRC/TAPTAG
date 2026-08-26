@@ -76,7 +76,7 @@ export function FaqItem({ question, answer }: FaqItemProps) {
         )}
       >
         <div className="overflow-hidden">
-          <p className="text-muted pb-6 text-sm leading-relaxed sm:text-base">
+          <p className="text-muted pb-6 type-body">
             {answer}
           </p>
         </div>

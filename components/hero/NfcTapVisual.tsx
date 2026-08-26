@@ -74,13 +74,13 @@ export function NfcTapVisual({ className }: NfcTapVisualProps) {
             repeat: -1,
           });
 
-          // Ciclo del tap: limpiar pantalla, acercar, contacto, menú, regresar.
-          // El menú se apaga al inicio y no al final, para que la pantalla solo
-          // quede vacía durante la aproximación y no la mitad del tiempo.
+          // Ciclo del tap: atenuar, acercar, contacto, encender, regresar.
+          // El menú baja a 0.18 y no a 0: la pantalla nunca queda vacía, y el
+          // tap se lee como que la ENCIENDE en vez de construirla de la nada.
           const tap = gsap.timeline({ repeat: -1, repeatDelay: 2.2 });
 
           tap
-            .to(menuRows, { opacity: 0, y: 10, duration: 0.3 }, 0)
+            .to(menuRows, { opacity: 0.18, y: 6, duration: 0.3 }, 0)
             .to(
               tapRef.current,
               { y: 16, x: -10, duration: 0.6, ease: "power2.in" },
@@ -219,7 +219,13 @@ export function NfcTapVisual({ className }: NfcTapVisualProps) {
   );
 }
 
-/** El celular del hero: marco compartido con la demo, más ancho en desktop. */
+/**
+ * El celular del hero: marco compartido con la demo, más ancho en desktop.
+ *
+ * Llevó un barrido especular en el instante del contacto y se quitó: duplicaba
+ * una señal que ya cargan el flash de la onda, el micro-scale del sticker y el
+ * encendido del menú, y solo existía durante 0.85s de un ciclo de 4.
+ */
 function PhoneMockup() {
   return (
     <PhoneFrame className="sm:w-[212px] lg:w-[248px]">

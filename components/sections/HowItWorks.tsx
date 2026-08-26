@@ -9,6 +9,7 @@ import { StepConnector } from "@/components/how-it-works/StepConnector";
 import { NfcMarkIcon } from "@/components/icons/NfcMarkIcon";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { SectionIntro } from "@/components/ui/SectionIntro";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -102,20 +103,16 @@ export function HowItWorks() {
 
   return (
     <Section id="como-funciona" className="border-border/60 border-t">
-      <Reveal className="max-w-2xl">
-        <p className="text-muted text-[0.6875rem] tracking-[0.2em] uppercase">
-          Cómo funciona
-        </p>
-
-        <h2 className="font-display mt-5 text-4xl leading-[1.05] font-semibold tracking-[-0.02em] sm:text-5xl lg:text-6xl">
-          Tres pasos. Una sola vez.
-        </h2>
-
-        <p className="text-muted mt-5 text-lg">
-          Lo instalas hoy y funciona para siempre. Sin configuración complicada,
-          sin capacitar a tu equipo.
-        </p>
-      </Reveal>
+      <SectionIntro
+        eyebrow="Cómo funciona"
+        pace="normal"
+        title="Tres pasos. Una sola vez."
+        lead={
+          <>
+            Lo instalas hoy y funciona para siempre. Sin configuración complicada, sin capacitar a tu equipo.
+          </>
+        }
+      />
 
       <div ref={rootRef} className="relative mt-16 lg:mt-20">
         <noscript>

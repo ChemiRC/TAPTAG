@@ -102,8 +102,8 @@ export function BrandingVisual() {
 export function DestinationsVisual() {
   return (
     <div className="flex flex-wrap gap-3">
-      <div className="border-border bg-bg/60 flex min-w-[9rem] flex-1 flex-col gap-2 rounded-xl border p-3">
-        <span className="text-dim text-[0.5625rem] tracking-[0.16em] uppercase">
+      <div className="border-border bg-bg/60 flex min-w-[9rem] flex-1 flex-col gap-2 rounded-chip border p-3">
+        <span className="text-dim type-label">
           Menú
         </span>
         {["Tacos de birria", "Aguachile verde"].map((item) => (
@@ -117,8 +117,8 @@ export function DestinationsVisual() {
         ))}
       </div>
 
-      <div className="border-border bg-bg/60 flex min-w-[9rem] flex-1 flex-col gap-2 rounded-xl border p-3">
-        <span className="text-dim text-[0.5625rem] tracking-[0.16em] uppercase">
+      <div className="border-border bg-bg/60 flex min-w-[9rem] flex-1 flex-col gap-2 rounded-chip border p-3">
+        <span className="text-dim type-label">
           Reseñas
         </span>
         <span className="flex gap-1">

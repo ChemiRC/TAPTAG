@@ -85,6 +85,36 @@ npx tsc --noEmit  # typecheck
 - Cada CTA de WhatsApp lleva un mensaje distinto según su origen, para saber de
   dónde vino cada prospecto.
 
+### Escala tipográfica
+
+Una auditoría encontró **36 combinaciones distintas** de tamaño/peso/interlínea/
+tracking en la página, y cinco trackings diferentes para el mismo rol de
+etiqueta. Para que la deriva no vuelva, cada rol tiene un nombre y vive en
+`app/globals.css` (capa `components`):
+
+| Clase | Rol | Valores |
+|---|---|---|
+| `.type-eyebrow` | Antetítulo de sección | 11px · 0.2em · versalitas |
+| `.type-section-title` | Titular de sección | 36 → 48 → 60px · −0.02em · 600 |
+| `.type-card-title` | Título de tarjeta o paso | 18px · −0.02em · 600 |
+| `.type-lead` | Bajada de sección | 18px · 1.55 |
+| `.type-body` | Cuerpo largo | 15 → 16px · 1.6 |
+| `.type-label` | Etiqueta versalita chica | 10px · 0.18em · versalitas |
+
+**Si hace falta una variante nueva, se agrega al sistema, no al componente.** Un
+tamaño con dos trackings o dos interlíneas es deriva, no diseño.
+
+Los radios son cuatro: `rounded-pill`, `rounded-chip` (12px), `rounded-card`
+(16px) y `rounded-panel` (28px). Los valores sueltos que quedan —el bisel del
+teléfono y el del sticker— son proporciones del objeto, no tokens del sistema.
+
+### Encabezados de sección
+
+Van con `<SectionIntro>`, que encadena antetítulo → titular → bajada en cascada.
+El ritmo es calibrable (`pace`) para que las ocho secciones se lean como un
+sistema sin entrar todas idénticas: `lenta` en Problema —la espera es su
+argumento— y `viva` en la Demo, que es la que invita a tocar.
+
 ## Verificación
 
 No hay suite de tests en el repo: la verificación se hizo manejando el sitio con

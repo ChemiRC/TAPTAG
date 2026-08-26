@@ -269,7 +269,7 @@ export function QrSimulation({
           <button
             type="button"
             onClick={finish}
-            className="text-dim hover:text-text self-start text-xs underline underline-offset-4 transition-colors duration-300"
+            className="text-dim hover:text-text decoration-muted/40 self-start text-xs underline underline-offset-4 transition-colors duration-300 hover:decoration-muted"
           >
             Saltar demo del QR
           </button>
