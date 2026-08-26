@@ -104,19 +104,36 @@ teclado, recorrido con `prefers-reduced-motion`, el sitio sin JavaScript, el
 
 ## Variables de entorno
 
-| Variable | Para qué | Si falta |
+| Variable | Para qué | Formato aceptado |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | `metadataBase`, imagen Open Graph, `sitemap.xml`, `robots.txt` y JSON-LD. Con protocolo y sin barra final. | Se usa `https://taptag.mx` (suposición). |
-| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Los 8 CTA de WhatsApp y el `telephone` del JSON-LD. Código de país + número, sin `+` ni espacios. | Todos los CTA apuntan a `52XXXXXXXXXX`, que no es marcable. |
+| `NEXT_PUBLIC_SITE_URL` | `metadataBase`, imagen Open Graph, `sitemap.xml`, `robots.txt` y JSON-LD. | URL absoluta con `http://` o `https://`. La barra final se recorta sola. |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Los 8 CTA de WhatsApp y el `telephone` del JSON-LD. | Código de país + número, entre 8 y 15 dígitos. Espacios, guiones, paréntesis y `+` se limpian solos. |
 
-`.env.example` documenta las dos; cópialo a `.env.local` para desarrollo (ese
-archivo no se sube).
+`.env.example` documenta las dos, con valores de ejemplo **válidos**; cópialo a
+`.env.local` para desarrollo (ese archivo no se sube).
 
 > **Las `NEXT_PUBLIC_*` se incrustan en el bundle en tiempo de build.** Definirlas
 > en Vercel no basta: hay que volver a desplegar para que surtan efecto.
 
-El build funciona con las variables presentes y ausentes; sin ellas el sitio
-compila igual y los placeholders quedan a la vista, que es justo lo que se busca.
+### Qué pasa si una variable falta o viene mal
+
+`lib/constants.ts` las normaliza y valida antes de que nadie las use. El build
+**nunca falla** por una variable de entorno: ante ausencia, cadena vacía, solo
+espacios, URL sin protocolo, protocolo que no sea http(s), o un número que no
+sean 8–15 dígitos, se usa el valor por defecto y se emite un aviso visible en el
+log de build:
+
+```
+[TAPTAG] NEXT_PUBLIC_SITE_URL: sin definir o vacía. Uso el valor por defecto
+"https://taptag.mx". Defínela en Vercel (Settings → Environment Variables) y
+vuelve a desplegar.
+```
+
+El aviso solo sale en servidor/build, no en la consola del visitante.
+
+Los defaults son placeholders a propósito: `52XXXXXXXXXX` no es marcable y
+`https://taptag.mx` es una suposición. Un build que se ve incompleto es mejor que
+uno que manda prospectos a un número equivocado en silencio.
 
 ## Subir a GitHub
 
