@@ -101,19 +101,19 @@ export const FAQS: readonly Faq[] = [
     id: "cambiar-destino",
     question: "¿Puedo cambiar a dónde lleva después?",
     answer:
-      "Sí. Durante el primer año, cuantas veces quieras y sin costo: nos avisas por WhatsApp y lo reprogramamos nosotros el mismo día. Pasado el año seguimos haciéndolo, solo que el cambio se cotiza aparte. En ningún caso tienes que reimprimir nada ni volver a contratar.",
+      "Sí. Durante el primer año, cuantas veces quieras y sin costo: nos avisas por WhatsApp y lo reprogramamos nosotros el mismo día. Solo que el cambio se cotiza aparte. En ningún caso tienes que reimprimir nada ni volver a contratar.",
   },
   {
     id: "despues-de-instalar",
     question: "¿Qué pasa después de la instalación?",
     answer:
-      "Te queda un contacto directo por WhatsApp. Durante el primer año, cambiar el destino, mover un punto de lugar o reponer alguno va incluido: nos escribes y lo resolvemos. Pasado el año seguimos ahí; los cambios se cotizan aparte. No hay ticket ni call center.",
+      "Te queda un contacto directo por WhatsApp. Durante el primer año, cambiar el destino, mover un punto de lugar o reponer alguno va incluido: nos escribes y lo resolvemos. Los cambios se cotizan aparte. No hay ticket ni call center.",
   },
   {
     id: "durabilidad",
     question: "¿Se despega o se arruina con la limpieza?",
     answer:
-      "Los puntos aguantan el uso diario de un restaurante: líquidos, grasa y limpieza constante. Si alguno deja de servir durante el primer año, lo reponemos sin costo.",
+      "Los puntos aguantan el uso diario de un restaurante: líquidos, grasa y limpieza constante.",
   },
   {
     id: "instalacion",
@@ -125,7 +125,7 @@ export const FAQS: readonly Faq[] = [
     id: "mensualidad",
     question: "¿Hay mensualidad o renovación?",
     answer:
-      "No. El servicio se contrata una vez y no hay cargos recurrentes ni renovación. El primer año de cambios y reposición va incluido; pasado ese año solo pagas los cambios que pidas. El costo inicial depende del alcance, así que lo cotizamos caso por caso.",
+      "No. El servicio se contrata una vez y no hay cargos recurrentes ni renovación. El primer mes de cambios y reposición va incluido; pasado ese mes solo pagas los cambios que pidas. El costo inicial depende del alcance, así que lo cotizamos caso por caso.",
   },
   {
     id: "cobertura",
