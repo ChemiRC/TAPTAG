@@ -159,18 +159,10 @@ export interface Feature {
  */
 export const FEATURES: readonly Feature[] = [
   {
-    id: "pago-unico",
-    title: "Sin mensualidades",
-    description:
-      "Contratas el servicio una vez y no hay cargos recurrentes. El primer año de acompañamiento va incluido: ni suscripción, ni renovación, ni letras chiquitas.",
-    className: "md:col-span-3 md:row-span-2",
-    featured: true,
-  },
-  {
     id: "reprogramar",
     title: "Los cambios los hacemos nosotros",
     description:
-      "Cambias de menú, de promoción o de destino: nos escribes y lo reprogramamos. Ilimitados durante el primer año; después se cotizan aparte.",
+      "Cambias de menú, de promoción o de destino: nos escribes y lo reprogramamos. Se cotizan aparte.",
     className: "md:col-span-3",
   },
   {
@@ -185,13 +177,6 @@ export const FEATURES: readonly Feature[] = [
     title: "iPhone 7+ y Android",
     description:
       "Tus clientes no necesitan nada especial: prácticamente cualquier celular de los últimos años.",
-    className: "md:col-span-2",
-  },
-  {
-    id: "reposicion",
-    title: "Si algo falla, lo reponemos",
-    description:
-      "Los puntos aguantan líquidos, grasa y limpieza diaria. Si alguno deja de servir durante el primer año, venimos y lo cambiamos sin costo.",
     className: "md:col-span-2",
   },
   {
